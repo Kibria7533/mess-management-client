@@ -1,12 +1,12 @@
+import Layout from "../components/Layout";
 
 
 const Manage=()=>{
 
     return(
-        <div>
+        <Layout>
             <h2> this Manage page</h2>
-        </div>
+        </Layout>
     )
 }
-
-export default  Manage
+export default  Manage;
