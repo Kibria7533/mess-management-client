@@ -1,12 +1,16 @@
-import Header from "./Header";
-
-const Layout=({props})=>{
+import styles from '../styles/Layout.module.css'
+import Nav from "./Nav";
+const Layout=({children})=>{
     return(
         <div>
-            <Header/>
-            {props}
+            <Nav/>
+            <div className={styles.container}>
+                <main className={styles.main}>
+                    {children}
+                </main>
+            </div>
         </div>
     )
 }
 
-export  default Layout;
+export default Layout
