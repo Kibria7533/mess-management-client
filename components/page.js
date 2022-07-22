@@ -1,8 +1,8 @@
 
-const page=(props)=>{
+const page=()=>{
     return(
         <div>
-            {props}
+            <h3> Page</h3>
         </div>
     )
 }
