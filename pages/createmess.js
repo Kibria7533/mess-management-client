@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import CreateMessstyles from '../styles/CreateMess.module.css'
 import styles from '../styles/Home.module.css'
+import Link from "next/link";
 
 export default function createmess() {
     return (
@@ -19,7 +20,9 @@ export default function createmess() {
                 <input className={CreateMessstyles.creat_mess} placeholder={`Enter Password`}/>
                 <input className={CreateMessstyles.creat_mess} placeholder={`Confirm Password`}/>
                 <span> <button style={{marginRight:"5px"}}><a href={`/`}>Back</a></button>
-                <button>Create</button></span>
+
+                <Link href='/statement'>Create</Link>
+                     </span>
 
 
             </main>
