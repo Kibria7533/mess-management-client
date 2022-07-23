@@ -1,13 +1,21 @@
-.dailyMealCalc {
-  text-align: center;
-}
-.dailyMealCalc p {
-}
-.dailymeal {
-  display: flex;
-}
+
 .dailymeal {
   width: 100%;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+.dailymeal :last-child{
+  margin-right:0%;
+}
+.dailyMealCalc {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+}
+.cardBg{
   background-color: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
