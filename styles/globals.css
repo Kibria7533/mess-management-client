@@ -14,3 +14,45 @@ a {
 * {
   box-sizing: border-box;
 }
+/* statement css */
+.net__meal{
+  box-shadow: 0 0 40px -10px rgba(0, 0, 0, .4);
+  width: 700px;
+  height: 100px;
+  text-align: center;
+  font-size: x-large;
+}
+.net__lunch{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.statement {
+  box-shadow: 0 0 40px -10px rgba(0, 0, 0, .4);
+  width: 600px;
+  height: 200px;
+}
+
+.statement__header{
+  text-align: center;
+}
+.statement__title--bottom{
+  margin-left: 10px;
+}
+
+.statement__profiles{
+  text-align: center;
+}
+
+.statement__profile{
+  border-bottom: burlywood;
+  border-radius: 5px;
+}
+
+.statement__name{
+  text-align: start;
+  margin-right: 5px;
+}
+
+.statement__value{
+  text-align: center;
+}

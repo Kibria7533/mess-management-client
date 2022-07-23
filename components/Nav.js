@@ -7,7 +7,7 @@ const Nav = () => {
         <nav className={navStyles.nav}>
             <ul>
                 <li>
-                    <Link href='/'>Home</Link>
+                    <Link href='/statement'>Home</Link>
                 </li>
                 <li>
                     <Link href='/about'>About</Link>

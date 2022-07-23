@@ -3,9 +3,11 @@ import Image from 'next/image'
 import CreateMessstyles from '../styles/CreateMess.module.css'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
+import Layout from "../components/Layout";
 
 export default function createmess() {
     return (
+        <Layout>
         <div className={styles.container}>
             <Head>
                 <title>Create Next App</title>
@@ -39,5 +41,6 @@ export default function createmess() {
                 </a>
             </footer>
         </div>
+        </Layout>
     )
 }

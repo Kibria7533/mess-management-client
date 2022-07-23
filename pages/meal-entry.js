@@ -1,7 +1,9 @@
 import styleMealEntry from '../styles/mealEntry.module.css'
+import Layout from "../components/Layout";
 const mealEntry=()=>{
 
     return(
+        <Layout>
         <main className={styleMealEntry.main}>
             <label className={styleMealEntry.label}>Date</label>
             <input type={"date"} className={styleMealEntry.meal_entry} />
@@ -18,6 +20,7 @@ const mealEntry=()=>{
             </select>
             <button className={styleMealEntry.button}>Add</button>
         </main>
+        </Layout>
     )
 }
 
