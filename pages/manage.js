@@ -23,59 +23,76 @@ const Manage=()=>{
                 <div className={`mt-10`}>
                     <div className="row">
                         <div className={`col-md-4`}>
-                            <div className={`card ${Styles.cardBg}`}>
-                                <div className="card-body">
-                                    This is some text within a card body.
+                            <Link href={'/cost'}>
+                                <div className={`card ${Styles.cardBg}`}>
+                                    <div className="card-body">
+                                        cost
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
+
                         </div>
 
                         <div className="col-md-4">
-                            <div className="card">
-                                <div className="card-body">
-                                    This is some text within a card body.
+                            <Link href={'/deposit'}>
+                                <div className="card">
+                                    <div className="card-body">
+                                        deposit
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
+
                         </div>
 
                         <div className="col-md-4">
-                            <div className="card">
-                                <div className="card-body">
-                                    This is some text within a card body.
+                            <Link href={'/management'}>
+                                <div className="card">
+                                    <div className="card-body">
+                                        management
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
+
                         </div>
 
                         <div className="col-md-4">
-                            <div className="card">
-                                <div className="card-body">
-                                    This is some text within a card body.
+                            <Link href={'/request'}>
+                                <div className="card">
+                                    <div className="card-body">
+                                        request
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
+
                         </div>
 
                         <div className="col-md-4">
-                            <div className="card">
-                                <div className="card-body">
-                                    This is some text within a card body.
+                            <Link href={'/member-list'}>
+                                <div className="card">
+                                    <div className="card-body">
+                                        member-list
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
+
                         </div>
 
 
                     <div className="col-md-4">
-                        <div className="card">
+                        <Link href={'/meal-report'}>
+                            <div className="card">
                             <div className="card-body">
-                                This is some text within a card body.
+                                meal-report
                             </div>
-                        </div>
+                        </div></Link>
+
                     </div>
 
                         <div className="col-md-4">
-                            <Link href={''}>
+                            <Link href={'/meal-entry'}>
                                 <div className="card">
                                     <div className="card-body">
-
+                                        meal-entry
                                     </div>
                                 </div>
                             </Link>
