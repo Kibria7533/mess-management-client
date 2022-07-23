@@ -22,7 +22,7 @@ const Manage=()=>{
                     {/* cards */}
                 <div className={`mt-10`}>
                     <div className="row">
-                        <div className={`col-md-4`}>
+                        <div className={`col-md-4 mb-10`}>
                             <Link href={'/cost'}>
                                 <div className={`card ${Styles.cardBg}`}>
                                     <div className="card-body">
@@ -33,9 +33,9 @@ const Manage=()=>{
 
                         </div>
 
-                        <div className="col-md-4">
+                        <div className={`col-md-4 mb-10`}>
                             <Link href={'/deposit'}>
-                                <div className="card">
+                                <div className={`card ${Styles.cardBg}`}>
                                     <div className="card-body">
                                         deposit
                                     </div>
@@ -44,9 +44,9 @@ const Manage=()=>{
 
                         </div>
 
-                        <div className="col-md-4">
+                        <div className={`col-md-4 mb-10`}>
                             <Link href={'/management'}>
-                                <div className="card">
+                                <div className={`card ${Styles.cardBg}`}>
                                     <div className="card-body">
                                         management
                                     </div>
@@ -55,9 +55,9 @@ const Manage=()=>{
 
                         </div>
 
-                        <div className="col-md-4">
+                        <div className={`col-md-4 mb-10`}>
                             <Link href={'/request'}>
-                                <div className="card">
+                                <div className={`card ${Styles.cardBg}`}>
                                     <div className="card-body">
                                         request
                                     </div>
@@ -66,9 +66,9 @@ const Manage=()=>{
 
                         </div>
 
-                        <div className="col-md-4">
+                        <div className={`col-md-4 mb-10`}>
                             <Link href={'/member-list'}>
-                                <div className="card">
+                                <div className={`card ${Styles.cardBg}`}>
                                     <div className="card-body">
                                         member-list
                                     </div>
@@ -78,9 +78,9 @@ const Manage=()=>{
                         </div>
 
 
-                    <div className="col-md-4">
+                    <div className={`col-md-4 mb-10`}>
                         <Link href={'/meal-report'}>
-                            <div className="card">
+                            <div className={`card ${Styles.cardBg}`}>
                             <div className="card-body">
                                 meal-report
                             </div>
@@ -88,9 +88,9 @@ const Manage=()=>{
 
                     </div>
 
-                        <div className="col-md-4">
+                        <div className={`col-md-4 mb-10`}>
                             <Link href={'/meal-entry'}>
-                                <div className="card">
+                                <div className={`card ${Styles.cardBg}`}>
                                     <div className="card-body">
                                         meal-entry
                                     </div>
