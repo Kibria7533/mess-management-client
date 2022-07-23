@@ -5,7 +5,7 @@ const mealEntry = () => {
     <Layout>
       <main className={styleMealEntry.main}>
         <div>
-          <label className={styleMealEntry.label}>Date</label>
+          <label className={styleMealEntry.label} >Date</label>
           <input type={"date"} className={styleMealEntry.meal_entry} />
         </div>
         <label className={styleMealEntry.label}>Break Fast</label>
