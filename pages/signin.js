@@ -39,9 +39,7 @@ import styleSignup from "../styles/signup.module.css";
                                      />
                                  </div>
                              </div>
-
                              {/* Button */}
-
                              <label className="control-label" htmlFor="submit" />
                              <div className="controls">
 
