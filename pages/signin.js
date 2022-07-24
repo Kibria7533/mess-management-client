@@ -36,7 +36,6 @@ import styleSignup from "../styles/signup.module.css";
                                          placeholder="Enter your Password"
                                          className={styleSignup.inputs}
                                          type="text"
-
                                      />
                                  </div>
                              </div>
