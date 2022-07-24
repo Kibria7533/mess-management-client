@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 import navStyles from '../styles/Nav.module.css'
 
@@ -9,9 +8,18 @@ const Nav = () => {
                 <li>
                     <Link href='/statement'>Home</Link>
                 </li>
+
                 <li>
-                    <Link href='/about'>Logout</Link>
+                    <Link href='/signup'>SignUp</Link>
                 </li>
+                <li>
+                    <Link href='/signin'>SignIn</Link>
+                </li>
+
+                <li>
+                    <Link href='/logout'>Logout</Link>
+                </li>
+
             </ul>
         </nav>
     )

@@ -1,15 +1,5 @@
 
-.main {
-    min-height: 100vh;
-    width: 100%;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.meal_entry{
+.inputs{
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -38,4 +28,11 @@
     margin-bottom: 15px;
     font-size: 1.2rem;
 
+}
+.legend{
+    font-family: Serif;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
 }

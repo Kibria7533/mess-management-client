@@ -4,7 +4,6 @@ import { FaPlus ,FaTrashAlt} from 'react-icons/fa';
 import {Button} from "react-bootstrap";
 
 const Cost = () => {
-
     return (
         <Layout>
             <>
@@ -35,10 +34,8 @@ const Cost = () => {
                 <div className={'row d-flex justify-content-end'}>
                     <Button className={''}><FaPlus/></Button>
                 </div>
-
             </>
         </Layout>
-
     )
 }
 export default Cost;

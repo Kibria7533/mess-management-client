@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 const mealEntry = () => {
   return (
     <Layout>
+      <div className="container">
       <main className={styleMealEntry.main}>
         <div>
           <label className={styleMealEntry.label} >Date</label>
@@ -23,6 +24,7 @@ const mealEntry = () => {
         </select>
         <button className={styleMealEntry.button}>Add</button>
       </main>
+      </div>
     </Layout>
   );
 };
