@@ -8,7 +8,7 @@ import styleSignup from "../styles/signup.module.css";
                      <form className="form-horizontal">
                          <fieldset>
                              {/* Form Name */}
-                             <legend  className={styleSignup.legend}>Sign Up </legend>
+                             <legend  className={styleSignup.legend}>Sign In </legend>
                              {/* Text input*/}
                              <div className="control-group">
                                  <label className={styleSignup.label} htmlFor="full_name">

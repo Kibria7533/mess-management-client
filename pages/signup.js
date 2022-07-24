@@ -10,7 +10,7 @@ const Signup=()=>{
                     <form className="form-horizontal">
                         <fieldset>
                             {/* Form Name */}
-                            <legend  className={styleSignup.legend}>Create Account </legend>
+                            <legend  className={styleSignup.legend}>Sign Up </legend>
                             {/* Text input*/}
                             <div className="control-group">
                                 <label className={styleSignup.label} htmlFor="full_name">
