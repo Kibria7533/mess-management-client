@@ -1,8 +1,27 @@
 import Layout from "../components/Layout";
 import styleSignup from '../styles/signup.module.css'
-
+import {useState} from "react";
+import axios from 'axios';
 import Link from "next/link";
 const Signup=()=>{
+    const [name,setName]=useState(" ");
+    const [phone_no, setPhone_no]=useState(" ");
+    const [address, setAddress]=useState(" ");
+    const [password, setPassword] =useState(" ");
+    const Save=async()=>{
+        console.log('hello');
+        await axios.post("http://localhost:5000/auth/signup",{
+            name,
+            phone_no,
+            address,
+            password
+        },{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json'}})
+            .then((data)=>{
+                console.log(data)
+            })
+    }
+
     return(
         <Layout>
             <main className="container">
@@ -13,16 +32,19 @@ const Signup=()=>{
                             <legend  className={styleSignup.legend}>Sign Up </legend>
                             {/* Text input*/}
                             <div className="control-group">
-                                <label className={styleSignup.label} htmlFor="full_name">
-                                    Name
+                                <label className={styleSignup.label} >
+                                   User Name
                                 </label>
                                 <div className="controls">
                                     <input
                                         id=" name"
                                         name=" name"
-                                        placeholder="Enter your name"
+                                        placeholder="Enter your user name"
                                         className={styleSignup.inputs}
                                         type="text"
+                                        onChange={(e)=>{
+                                            setName(e.target.value);
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -38,12 +60,15 @@ const Signup=()=>{
                                         placeholder=" Enter your phone number"
                                         className={styleSignup.inputs}
                                         type="tel"
+                                       onChange={(e)=>{
+                                           setPhone_no(e.target.value);
+                                       }}
                                     />
                                 </div>
                             </div>
                             {/* Text input*/}
                             <div className="control-group">
-                                <label className={styleSignup.label} htmlFor="mother_name">
+                                <label className={styleSignup.label} >
                                     Address
                                 </label>
                                 <div className="controls">
@@ -53,13 +78,16 @@ const Signup=()=>{
                                         placeholder=" Enter your address"
                                         className={styleSignup.inputs}
                                         type="text"
+                                        onChange={(e)=>{
+                                            setAddress(e.target.value)
+                                        }}
                                     />
                                 </div>
                             </div>
 
                             {/* Text input*/}
                             <div className="control-group">
-                                <label className={styleSignup.label} htmlFor="mother_name">
+                                <label className={styleSignup.label} >
                                     Password
                                 </label>
                                 <div className="controls">
@@ -69,6 +97,9 @@ const Signup=()=>{
                                         placeholder="Enter your Password"
                                         className={styleSignup.inputs}
                                         type="text"
+                                        onChange={(e)=>{
+                                            setPassword(e.target.value)
+                                        }}
 
                                     />
                                 </div>
@@ -76,10 +107,10 @@ const Signup=()=>{
 
                             {/* Button */}
 
-                                <label className="control-label" htmlFor="submit" />
+                                <label className="control-label"/>
                                 <div className="controls">
                                     <Link href={'/signin'} >
-                                        <button className={styleSignup.button} id="submit" name="submit"  >
+                                        <button className={styleSignup.button} onClick={()=>Save()} >
                                             SignUp
                                         </button>
                                     </Link>

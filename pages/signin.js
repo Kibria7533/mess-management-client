@@ -1,6 +1,22 @@
 import Layout from "../components/Layout";
 import styleSignup from "../styles/signup.module.css";
+import {useState} from "react";
+import axios from "axios";
+
  const  Signin=()=>{
+     const [username,setUsername]=useState(" ");
+     const [password,setPassword]=useState(" ");
+     const Save=async ()=>{
+         await axios.post("http://localhost:5000/auth/login",{
+             username,
+             password
+         },{headers: {'Accept': 'application/json',
+                 'Content-Type': 'application/json'}})
+             .then((data)=>{
+                 console.log(data)
+             })
+     }
+
      return(
          <Layout>
              <main className="container">
@@ -11,7 +27,7 @@ import styleSignup from "../styles/signup.module.css";
                              <legend  className={styleSignup.legend}>Sign In </legend>
                              {/* Text input*/}
                              <div className="control-group">
-                                 <label className={styleSignup.label} htmlFor="full_name">
+                                 <label className={styleSignup.label}>
                                     User Name
                                  </label>
                                  <div className="controls">
@@ -21,12 +37,15 @@ import styleSignup from "../styles/signup.module.css";
                                          placeholder="Enter your user name"
                                          className={styleSignup.inputs}
                                          type="text"
+                                         onChange={(e)=>{
+                                             setUsername(e.target.value)
+                                         }}
                                      />
                                  </div>
                              </div>
                              {/* Text input*/}
                              <div className="control-group">
-                                 <label className={styleSignup.label} htmlFor="mother_name">
+                                 <label className={styleSignup.label}>
                                      Password
                                  </label>
                                  <div className="controls">
@@ -36,18 +55,21 @@ import styleSignup from "../styles/signup.module.css";
                                          placeholder="Enter your Password"
                                          className={styleSignup.inputs}
                                          type="text"
+                                         onChange={(e)=>{
+                                             setPassword(e.target.value)
+                                         }}
                                      />
                                  </div>
                              </div>
                              {/* Button */}
-                             <label className="control-label" htmlFor="submit" />
+                             <label className="control-label"  />
                              <div className="controls">
 
-                                     <button className={styleSignup.button} id="submit" name="submit"  >
+                                     <button className={styleSignup.button}
+                                     onClick={()=>Save()}
+                                     >
                                          SignIn
                                      </button>
-
-
                              </div>
 
                          </fieldset>
