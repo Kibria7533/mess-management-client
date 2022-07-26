@@ -96,8 +96,18 @@ const Manage=()=>{
                                     </div>
                                 </div>
                             </Link>
-
                         </div>
+
+                        <div className={`col-md-4 mb-10`}>
+                            <Link href={'/monthly-statement'}>
+                                <div className={`card ${Styles.cardBg}`}>
+                                    <div className="card-body">
+                                        Monthly Statement
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+
                 </div>
                 </div>
 

@@ -7,7 +7,6 @@ const Cost = () => {
     return (
         <Layout>
             <>
-
                 <div className="table-responsive">
                     <table className="table">
                         <thead>
