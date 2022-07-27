@@ -1,6 +1,49 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
+import axios from 'axios';
+import {useEffect, useState} from "react";
 const MemberList=()=>{
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    // deposit create usestate
+    const [date, setDate]=useState(" ");
+    const [name, setName]=useState(" ");
+    const [amount, setAmount]=useState(" ");
+    const [status, setStatus]=useState(" ");
+ console.log('lool')
+
+    //get deposit
+    const [memberList,setMemberList]=useState([])
+
+    useEffect(()=>{
+        console.log('hello')
+        getMemberList();
+    })
+    const getMemberList=async()=>{
+        await axios.get("http://localhost:5000/member-list")
+            .then((data)=>{
+                console.log(data.data);
+                setMemberList(data.data);
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+    }
+    const Save=async ()=>{
+        await axios.post("http://localhost:5000/member-list",{
+            date,
+            name,
+            amount,
+            status
+        },{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json'}})
+            .then((data)=>{
+                console.log(data);
+            })
+    }
+
     return(
         <Layout>
             <>
