@@ -12,17 +12,15 @@ const MemberList=()=>{
     const [name, setName]=useState(" ");
     const [amount, setAmount]=useState(" ");
     const [status, setStatus]=useState(" ");
- console.log('lool')
 
     //get deposit
     const [memberList,setMemberList]=useState([])
 
     useEffect(()=>{
-        console.log('hello')
         getMemberList();
     })
     const getMemberList=async()=>{
-        await axios.get("http://localhost:5000/member-list")
+        await axios.get("http://localhost:5000/member")
             .then((data)=>{
                 console.log(data.data);
                 setMemberList(data.data);
@@ -32,7 +30,7 @@ const MemberList=()=>{
             })
     }
     const Save=async ()=>{
-        await axios.post("http://localhost:5000/member-list",{
+        await axios.post("http://localhost:5000/member",{
             date,
             name,
             amount,
@@ -53,37 +51,23 @@ const MemberList=()=>{
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark Otto</td>
-                            <td>Otto@gmail.com</td>
-                            <td>01720588884</td>
-                            <td>Pending</td>
-                            <td><Link href={"/"}>Delete</Link></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark Otto</td>
-                            <td>Otto@gmail.com</td>
-                            <td>01720588884</td>
-                            <td>Pending</td>
-                            <td><Link href={"/"}>Delete</Link></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark Otto</td>
-                            <td>Otto@gmail.com</td>
-                            <td>01720588884</td>
-                            <td>Pending</td>
-                            <td><Link href={"/"}>Delete</Link></td>
-                        </tr>
+                        {memberList.length>0 && memberList.map((member,idx)=>{
+                            return(
+                                <tr key={idx+1}>
+                                    <td>{idx+1}</td>
+                                    <td>{member.name}</td>
+                                    <td>{member.phone_no}</td>
+                                    <td>{member.status ?? 'pending'}</td>
+                                    <td><Link href={"/"}>Delete</Link></td>
+                                </tr>
+                            )
+                        })}
                         </tbody>
                     </table>
                 </div>
