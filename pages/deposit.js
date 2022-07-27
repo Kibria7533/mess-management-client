@@ -15,19 +15,17 @@ const Deposit=()=>{
     // deposit create usestate
     const [date, setDate]=useState(" ");
     const [name, setName]=useState(" ");
-    const [amount, setAmount]=useState(" ");
-    const [status, setStatus]=useState(" ");
-
+    const [amount, setAmount]=useState(0);
 
     //get deposit
-    const [depositList,setdepositlist]=useState(" ")
+    const [depositList,setdepositlist]=useState([ ])
     useEffect(()=>{
         getDeposit();
     })
    const getDeposit=async()=>{
     await axios.get("http://localhost:5000/deposit")
         .then((data)=>{
-            console.log(data.data);
+            console.log(data);
             setdepositlist(data.data);
         })
         .catch((err)=>{
@@ -38,14 +36,22 @@ const Deposit=()=>{
         await axios.post("http://localhost:5000/deposit",{
             date,
             name,
-            amount,
-            status
+            amount
         },{headers: {'Accept': 'application/json',
             'Content-Type': 'application/json'}})
             .then((data)=>{
                 console.log(data);
+                setShow(false);
             })
     }
+    const calendarStrings = {
+        lastDay : '[Yesterday at] LT',
+        sameDay : '[Today at] LT',
+        nextDay : '[Tomorrow at] LT',
+        lastWeek : '[last] dddd [at] LT',
+        nextWeek : 'dddd [at] LT',
+        sameElse : 'L'
+    };
 
     return(
         <Layout>
@@ -71,28 +77,18 @@ const Deposit=()=>{
                     </thead>
                     <tbody>
 
-                    {/*{depositList.length>0 && depositList.map((depo,idx,index)=>{*/}
-                    {/*    return(*/}
-                    {/*        <tr key={idx}>*/}
-                    {/*            <td>{index}</td>*/}
-                    {/*            <td>{depo.createdAt}</td>*/}
-                    {/*            <td>{depo.name}</td>*/}
-                    {/*            <td>{depo.amount}</td>*/}
-                    {/*            <td>{depo.status}</td>*/}
-                    {/*        </tr>*/}
-                    {/*    )*/}
-                    {/*})}*/}
+                    {depositList.length>0 && depositList.map((depo,idx)=>{
 
-                    <tr>
-
-                        <th scope="row">1</th>
-                        <td>19-07-2022</td>
-                        <td>kibria</td>
-                        <td>500.0</td>
-                        <td>Pending</td>
-                        <td><FaTrashAlt/></td>
-                    </tr>
-
+                        return(
+                            <tr key={idx}>
+                                <td>{idx+1}</td>
+                                <td>{depo.createdAt}</td>
+                                <td>{depo.name}</td>
+                                <td>{depo.amount}</td>
+                                <td>{depo.status}</td>
+                            </tr>
+                        )
+                    })}
                     </tbody>
                 </table>
             </div>
@@ -141,16 +137,6 @@ const Deposit=()=>{
                             />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Status</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter your amount"
-                                onChange={(e)=>{
-                                    setStatus(e.target.value)
-                                }}
-                            />
-                        </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
