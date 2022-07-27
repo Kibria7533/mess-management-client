@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Button from 'react-bootstrap/Button';
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,7 +18,9 @@ export default function Home() {
           Welcome to <a href="">MESS APP</a>
         </h5>
 
-          <button> <a href={`/createmess`}> Create A Mess </a></button>
+          <Link href={'/createmess'}>
+              <Button variant={"primary"}>Create A Mess</Button>
+          </Link>
 
           <span style={{fontZize: "20px",
               margin: "21px",

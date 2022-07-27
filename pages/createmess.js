@@ -4,8 +4,31 @@ import CreateMessstyles from '../styles/CreateMess.module.css'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
 import Layout from "../components/Layout";
+import {useState} from "react";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import axios from "axios";
 
 export default function createmess() {
+    const [name, setName]=useState(" ");
+    const [email, setEmail]=useState("");
+    const [phone_no, setPhone_no]=useState(" ");
+    const [password, setPassword] = useState(" ");
+    const [confirm_password, setConfirm_password]=useState(" ");
+    const Save=async()=>{
+        await axios.post("http://localhost:5000/mess",{
+            name,
+            email,
+            phone_no,
+            password,
+            confirm_password
+        },{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json'}})
+            .then((data)=>{
+                console.log(data);
+            })
+    }
+
     return (
         <Layout>
         <div className={styles.container}>
@@ -15,14 +38,67 @@ export default function createmess() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className={styles.main}>
-                <input className={CreateMessstyles.creat_mess} placeholder={`Enter Name`}/>
-                <input className={CreateMessstyles.creat_mess} placeholder={`Enter Email`}/>
-                <input className={CreateMessstyles.creat_mess} placeholder={`Enter Phone`}/>
-                <input className={CreateMessstyles.creat_mess} placeholder={`Enter Password`}/>
-                <input className={CreateMessstyles.creat_mess} placeholder={`Confirm Password`}/>
-                <span> <button style={{marginRight:"5px"}}><a href={`/`}>Back</a></button>
 
-                <Link href='/statement'>Create</Link>
+                <Form>
+                    <Form.Group className="mb-3" >
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter your name"
+                                      onChange={(e)=>{
+                                          setName(e.target.value);
+                                      }}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="email" placeholder="Enter your email"
+                        onChange={(e)=>{
+                            setEmail(e.target.value);
+                        }}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Control placeholder="Enter your phone number" type="tel"
+                                      onChange={(e)=>{
+                                          setPhone_no(e.target.value);
+                                      }}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="text" placeholder="Enter your password"
+                        onChange={(e)=>{
+                            setPassword(e.target.value);
+                        }}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className={`mb-3 ${CreateMessstyles.creat_mess}`}>
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type="text" placeholder="Enter your confirm password"
+                        onChange={(e)=>{
+                            setConfirm_password(e.target.value)
+                        }}
+                        />
+                    </Form.Group>
+
+                </Form>
+                <span>
+                    <Link href={'/'}>
+                        <Button style={{marginRight:"5px"}} variant="danger">Back</Button>
+                    </Link>
+
+                <Link href='/statement'>
+                    <Button variant="primary"
+                            onClick={()=>Save()}
+                    >
+                        Create
+                    </Button>
+                </Link>
+
                      </span>
 
 
