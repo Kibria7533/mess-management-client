@@ -1,0 +1,47 @@
+.title{
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.meal{
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 2rem;
+    border-bottom: 0.2rem solid #bdb7b7;
+}
+.end_of_day{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 2rem;
+}
+
+.name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.cards{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #485059;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    color: #e7e5e3;
+
+}
+.card1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

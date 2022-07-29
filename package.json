@@ -10,8 +10,13 @@
   },
   "dependencies": {
     "@ccmos/nestjs-moment": "^0.1.0",
+    "@fortawesome/fontawesome-svg-core": "^6.1.2",
+    "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@iconscout/react-unicons": "^1.1.6",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "font-awesome": "^4.7.0",
     "moment": "^2.29.4",
     "next": "12.2.2",
     "react": "18.2.0",
