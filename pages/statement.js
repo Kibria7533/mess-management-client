@@ -1,12 +1,29 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
 import styleSignup from "../styles/signup.module.css";
+import {useEffect} from "react";
+import axios from "axios";
 
 
 const Statement=()=>{
 
+    useEffect(()=>{
+        getMonthlyStatement();
+    })
+const  getMonthlyStatement=async()=>{
+        try{
+            let data=await axios.get();
+            if(data){
+
+            }
+        }catch (err){
+
+        }
+
+}
     return(
         <Layout>
+            <h4>TTTT mess</h4>
             <div className={'net__meal'}>
                 <span className={'net__breakfast'}>Breakfast:  2</span>
                 <span className={'net__lunch'}>Lunch:  6</span>

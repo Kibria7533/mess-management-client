@@ -3,18 +3,25 @@ import styleSignup from "../styles/signup.module.css";
 import {useState} from "react";
 import axios from "axios";
 import Link from "next/link";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Router from 'next/router'
 
  const  Signin=()=>{
-     const [username,setUsername]=useState(" ");
-     const [password,setPassword]=useState(" ");
-     const Save=async ()=>{
+     const [username,setUsername]=useState("");
+     const [password,setPassword]=useState("");
+     const Save=async (e)=>{
+         e.preventDefault();
          await axios.post("http://localhost:5000/auth/login",{
              username,
              password
          },{headers: {'Accept': 'application/json',
                  'Content-Type': 'application/json'}})
              .then((data)=>{
-                 console.log(data)
+                 localStorage.setItem("access_token",data.data.access_token);
+                 Router.push('/welcome')
+             }).catch(err=>{
+                 toast.error('Wrong Credentials')
              })
      }
 
@@ -22,7 +29,7 @@ import Link from "next/link";
 
              <main className="container">
                  <div className="row">
-                     <form className="form-horizontal">
+                     <form className="form-horizontal" onSubmit={Save}>
                          <fieldset>
                              {/* Form Name */}
                              <legend  className={styleSignup.legend}>Sign In </legend>
@@ -33,8 +40,8 @@ import Link from "next/link";
                                  </label>
                                  <div className="controls">
                                      <input
-                                         id=" name"
-                                         name=" name"
+                                         id="username"
+                                         name="username"
                                          placeholder="Enter your user name"
                                          className={styleSignup.inputs}
                                          type="text"
@@ -60,18 +67,32 @@ import Link from "next/link";
                                              setPassword(e.target.value)
                                          }}
                                      />
+
                                  </div>
                              </div>
                              {/* Button */}
                              <label className="control-label"  />
                              <div className="controls">
-                                 <Link href={'/welcome'}>
+
                                      <button className={styleSignup.button}
-                                             onClick={()=>Save()}
+                                             type={"submit"}
                                      >
                                          SignIn
                                      </button>
-                                 </Link>
+                                 <ToastContainer
+                                     position="top-right"
+                                     autoClose={5000}
+                                     hideProgressBar={false}
+                                     newestOnTop={false}
+                                     closeOnClick
+                                     rtl={false}
+                                     pauseOnFocusLoss
+                                     draggable
+                                     pauseOnHover
+                                 />
+                                 {/* Same as */}
+                                 <ToastContainer />
+
 
                              </div>
 
