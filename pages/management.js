@@ -6,7 +6,8 @@ import Link from "next/link";
 import { FaBeer } from 'react-icons/fa';
 import {AiOutlineArrowRight, AiOutlineDownload} from "react-icons/ai";
 import Button from "react-bootstrap/Button";
-import {MdFreeBreakfast, MdRestaurant} from "react-icons/md";
+import {MdDinnerDining, MdFreeBreakfast, MdLunchDining, MdRestaurant} from "react-icons/md";
+import {BsMoonStarsFill} from "react-icons/bs";
 
 
 const Management=()=>{
@@ -30,7 +31,7 @@ const Management=()=>{
 
                                 <div className={stylemanagement.meal}>
                                     <div className={stylemanagement.name}>
-                                        <span><MdFreeBreakfast/></span>
+                                        <span><MdLunchDining/></span>
                                         <h3>Lunch</h3>
                                     </div>
                                     <span> Time </span>
@@ -39,7 +40,7 @@ const Management=()=>{
 
                                 <div className={stylemanagement.meal}>
                                     <div className={stylemanagement.name}>
-                                        <span><MdFreeBreakfast/></span>
+                                        <span><MdDinnerDining/></span>
                                         <h3>Dinner</h3>
                                     </div>
                                     <span> Time </span>
@@ -48,7 +49,7 @@ const Management=()=>{
 
                                 <div className={stylemanagement.meal}>
                                     <div className={stylemanagement.name} >
-                                        <span><MdFreeBreakfast/></span>
+                                        <span><BsMoonStarsFill/></span>
                                         <h3>Day End</h3>
                                     </div>
                                     <span> Time </span>
