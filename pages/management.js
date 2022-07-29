@@ -9,8 +9,6 @@ import Button from "react-bootstrap/Button";
 import {MdFreeBreakfast, MdRestaurant} from "react-icons/md";
 
 
-
-
 const Management=()=>{
 
     return(
@@ -18,17 +16,16 @@ const Management=()=>{
             <div  className={`row ${stylemanagement.card}`}>
 
                 <div className={`col-md-4`}>
-                    <Card  style={{ width: '40rem', height:'25rem'}} >
+                    <Card  style={{ width: '40rem', height:'28rem'}} >
 
                         <Card.Body>
-                            <Card.Title className={stylemanagement.title}>Meal Of Time</Card.Title>
+                            <Card.Header className={stylemanagement.title}>Meal Of Time</Card.Header>
                                 <div className={stylemanagement.meal}>
                                     <div className={stylemanagement.name}>
                                         <span><MdFreeBreakfast/></span>
                                         <h3>Breakfast</h3>
                                     </div>
                                     <span> Time </span>
-
                                 </div>
 
                                 <div className={stylemanagement.meal}>
