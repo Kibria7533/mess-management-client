@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
+import styleSignup from "../styles/signup.module.css";
 
 
 const Statement=()=>{
@@ -73,8 +74,15 @@ const Statement=()=>{
         </div>
             <br/>
             <hr/>
-            <Link href='/manage'>Manage</Link>
-            <Link href='/'>Summary</Link>
+            <label className="control-label"  />
+            <div className="controls">
+                <Link href={'/manage'}>
+                    <button className={styleSignup.button}
+                    >
+                        Manage
+                    </button>
+                </Link>
+            </div>
         </Layout>
     )
 }
