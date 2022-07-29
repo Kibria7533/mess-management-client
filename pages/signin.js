@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import styleSignup from "../styles/signup.module.css";
 import {useState} from "react";
 import axios from "axios";
+import Link from "next/link";
 
  const  Signin=()=>{
      const [username,setUsername]=useState(" ");
@@ -18,7 +19,7 @@ import axios from "axios";
      }
 
      return(
-         <Layout>
+
              <main className="container">
                  <div className="row">
                      <form className="form-horizontal">
@@ -64,18 +65,22 @@ import axios from "axios";
                              {/* Button */}
                              <label className="control-label"  />
                              <div className="controls">
-
+                                 <Link href={'/welcome'}>
                                      <button className={styleSignup.button}
-                                     onClick={()=>Save()}
+                                             onClick={()=>Save()}
                                      >
                                          SignIn
                                      </button>
+                                 </Link>
+
                              </div>
+
+
                          </fieldset>
                      </form>
                  </div>
              </main>
-         </Layout>
+
      )
  }
  export  default Signin

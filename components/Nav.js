@@ -10,13 +10,6 @@ const Nav = () => {
                 </li>
 
                 <li>
-                    <Link href='/signup'>SignUp</Link>
-                </li>
-                <li>
-                    <Link href='/signin'>SignIn</Link>
-                </li>
-
-                <li>
                     <Link href='/logout'>Logout</Link>
                 </li>
 
