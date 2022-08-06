@@ -27,7 +27,8 @@ export default function createmess() {
         }, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }
         })
             .then((data) => {

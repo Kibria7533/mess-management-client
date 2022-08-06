@@ -28,7 +28,7 @@ const Cost = () => {
             date,
             cost,
             item_name,
-            mess_id:"1234"
+            mess_id: localStorage.getItem("mess_id")
         },{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`

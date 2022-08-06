@@ -3,12 +3,16 @@ import Layout from "../components/Layout";
 import styleSignup from "../styles/signup.module.css";
 import {useEffect} from "react";
 import axios from "axios";
-
+import { useRouter } from 'next/router'
 
 const Statement=()=>{
+    const router = useRouter()
+    console.log(router.query);
 
     useEffect(()=>{
         getMonthlyStatement();
+        localStorage.setItem("mess_id",router.query.mess_id);
+
     })
 const  getMonthlyStatement=async()=>{
         try{
@@ -23,7 +27,7 @@ const  getMonthlyStatement=async()=>{
 }
     return(
         <Layout>
-            <h4>TTTT mess</h4>
+            <h4> Mess Id {router.query.mess_id}</h4>
             <div className={'net__meal'}>
                 <span className={'net__breakfast'}>Breakfast:  2</span>
                 <span className={'net__lunch'}>Lunch:  6</span>
