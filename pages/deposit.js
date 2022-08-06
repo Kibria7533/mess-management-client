@@ -13,8 +13,8 @@ const Deposit=()=>{
     const handleShow = () => setShow(true);
 
     // deposit create usestate
-    const [date, setDate]=useState(" ");
-    const [name, setName]=useState(" ");
+    const [date, setDate]=useState("");
+    const [name, setName]=useState("");
     const [amount, setAmount]=useState(0);
 
     //get deposit
