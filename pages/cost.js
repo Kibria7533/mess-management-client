@@ -18,8 +18,7 @@ const Cost = () => {
     const [date,setDate]=useState(" ")
     const [cost, setCost]=useState(" ");
     const [item_name, setItem_name]=useState(" ");
-    const [name_of_person, setName_of_person]=useState("");
-
+    // const [name_of_person, setName_of_person]=useState("");
 
 
 
@@ -29,9 +28,12 @@ const Cost = () => {
             date,
             cost,
             item_name,
-            name_of_person
+            mess_id:"1234"
         },{headers: {'Accept': 'application/json',
-                'Content-Type': 'application/json'}})
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+
+            }})
             .then((data)=>{
                 console.log(data)
                 setShow(false);
@@ -135,17 +137,17 @@ const Cost = () => {
                             />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Name of Person</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter name of person"
-                                autoFocus
-                                onChange={(e)=>{
-                                    setName_of_person(e.target.value)
-                                }}
-                            />
-                        </Form.Group>
+                        {/*<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">*/}
+                        {/*    <Form.Label>Name of Person</Form.Label>*/}
+                        {/*    <Form.Control*/}
+                        {/*        type="text"*/}
+                        {/*        placeholder="Enter name of person"*/}
+                        {/*        autoFocus*/}
+                        {/*        onChange={(e)=>{*/}
+                        {/*            setName_of_person(e.target.value)*/}
+                        {/*        }}*/}
+                        {/*    />*/}
+                        {/*</Form.Group>*/}
 
 
                     </Form>
