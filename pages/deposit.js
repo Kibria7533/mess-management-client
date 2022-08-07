@@ -36,9 +36,12 @@ const Deposit=()=>{
         await axios.post("http://localhost:5000/deposit",{
             date,
             name,
-            amount
+            amount,
+            mess_id: localStorage.getItem("mess_id")
         },{headers: {'Accept': 'application/json',
-            'Content-Type': 'application/json'}})
+            'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }})
             .then((data)=>{
                 console.log(data);
                 setShow(false);
