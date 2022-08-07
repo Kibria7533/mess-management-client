@@ -20,25 +20,6 @@ const Request=()=>{
     const [mealList,setMealList]=useState("")
 
 
-    // Bazar Handle
-    const [show, setShow] = useState(false);
-    const BazarhandleClose = () => setShow(false);
-    const BazarhandleShow = () => setShow(true);
-
-
-    //Deposit Handle
-    const DeposithandleClose = () => setShow(false);
-    const DeposithandleShow = () => setShow(true);
-
-
-    //Meal Entry Handle
-    const MealEntryhandleClose = () => setShow(false);
-    const MealEntryhandleShow = () => setShow(true);
-
-
-    // Deposit List Usestate
-    const [name, setName]=useState("");
-    const [amount, setAmount]=useState(0);
 
 
     //Bazar list UseState
@@ -119,7 +100,6 @@ const getRequestData=async ()=>{
             }})
             .then(res=>{
                 console.log(res.data)
-                setShow(false);
             })
             .catch(err=>{
                 console.log(err)
