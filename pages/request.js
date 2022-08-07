@@ -166,10 +166,9 @@ const getRequestData=async ()=>{
                                     <td></td>
 
                                     <td scope="col">
-                                        <button className='btn btn-primary'>Pending</button>
-                                        <button className='btn btn-warning'>Accept</button>
+                                        <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"BazarList",req)}>{req.status? "Accepted":"Pending"}</button>
                                     </td>
-                                    <td scope="col"> <button className='btn btn-danger' onClick={()=>{deleteBazaList(req._id)}}>Delete</button></td>
+                                    <td scope="col"> <button className='btn btn-danger' onClick={()=>deleteBazaList()} >Delete</button></td>
                                 </tr>
                             )
 
@@ -246,8 +245,8 @@ const getRequestData=async ()=>{
                                     <td></td>
                                     <td></td>
                                     <td scope="col">
-                                        <button className='btn btn-primary'>Pending</button>
-                                        <button className='btn btn-warning'>Edit</button>
+                                        <button className='btn btn-primary'>{req.status? "Accepted":"Pending"}</button>
+                                        <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"MealEntry",req)}>Accepted</button>
                                     </td>
                                     <td scope="col"> <button className='btn btn-danger' onClick={()=>{deleteMealEntry(req._id)}}>Delete</button></td>
 
