@@ -18,9 +18,11 @@ const Save=async ()=>{
     break_fast,
     lunch,
     dinner,
-    meal_of
+    meal_of, mess_id: localStorage.getItem("mess_id")
   },{headers: {'Accept': 'application/json',
-      'Content-Type': 'application/json'}})
+      'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
+      }})
       .then((data)=>{
         console.log(data)
       })

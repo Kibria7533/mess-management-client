@@ -137,18 +137,6 @@ const Cost = () => {
                             />
                         </Form.Group>
 
-                        {/*<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">*/}
-                        {/*    <Form.Label>Name of Person</Form.Label>*/}
-                        {/*    <Form.Control*/}
-                        {/*        type="text"*/}
-                        {/*        placeholder="Enter name of person"*/}
-                        {/*        autoFocus*/}
-                        {/*        onChange={(e)=>{*/}
-                        {/*            setName_of_person(e.target.value)*/}
-                        {/*        }}*/}
-                        {/*    />*/}
-                        {/*</Form.Group>*/}
-
 
                     </Form>
                 </Modal.Body>

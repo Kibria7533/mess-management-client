@@ -5,4 +5,13 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 5rem;
 }
+.table_header{
+    color: rgba(44, 47, 50, 0.8);
+}
 
+.table_style{
+    text-align: center;
+    color: rgba(44, 47, 50, 0.84);
+    opacity: 0.8;
+    font-weight: 600;
+}
