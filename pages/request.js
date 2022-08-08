@@ -150,8 +150,7 @@ const getRequestData=async ()=>{
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">Cost</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -161,14 +160,17 @@ const getRequestData=async ()=>{
                             return(
                                 <tr key={idx}>
                                     <td>{idx+1}</td>
+                                    <td>{req.item_name}</td>
                                     <td>{req.cost}</td>
-                                    <td></td>
-                                    <td></td>
-
                                     <td scope="col">
-                                        <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"BazarList",req)}>{req.status? "Accepted":"Pending"}</button>
+                                        <button className='btn btn-primary'>{req.status? "Accepted":"Pending"}</button>
+
                                     </td>
-                                    <td scope="col"> <button className='btn btn-danger' onClick={()=>deleteBazaList()} >Delete</button></td>
+                                    <td scope="col">
+                                        <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"BazarList",req)}>Accept</button>
+                                      / <button className='btn btn-danger' onClick={()=>deleteBazaList()} >Delete</button>
+
+                                    </td>
                                 </tr>
                             )
 
@@ -207,9 +209,12 @@ const getRequestData=async ()=>{
                                     <td>{req.amount}</td>
                                     <td scope="col">
                                         <button className='btn btn-primary'>{req.status? "Accepted":"Pending"}</button>
-                                        <button className='btn btn-warning'  onClick={()=>acceptMethod(req._id,"Deposit",req)}>Accept</button>
+
                                     </td>
-                                    <td scope="col"> <button className='btn btn-danger' onClick={()=>{deleteDepositList(req._id)}}>Delete</button></td>
+                                    <td scope="col">
+                                        <button className='btn btn-warning'  onClick={()=>acceptMethod(req._id,"Deposit",req)}>Accept</button>/
+                                        <button className='btn btn-danger' onClick={()=>{deleteDepositList(req._id)}}>Delete</button>
+                                    </td>
                                 </tr>
                             )
                         })}
@@ -230,8 +235,9 @@ const getRequestData=async ()=>{
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">Break Fast</th>
+                            <th scope="col">Lunch</th>
+                            <th scope="col">Dinner</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -241,14 +247,18 @@ const getRequestData=async ()=>{
                             return(
                                 <tr key={idx}>
                                     <td>{idx+1}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{req.meal_of}</td>
+                                    <td>{req.break_fast}</td>
+                                    <td>{req.lunch}</td>
+                                    <td>{req.dinner}</td>
                                     <td scope="col">
                                         <button className='btn btn-primary'>{req.status? "Accepted":"Pending"}</button>
-                                        <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"MealEntry",req)}>Accepted</button>
+
                                     </td>
-                                    <td scope="col"> <button className='btn btn-danger' onClick={()=>{deleteMealEntry(req._id)}}>Delete</button></td>
+                                    <td scope="col">
+                                        <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"MealEntry",req)}>Accept</button>/
+                                        <button className='btn btn-danger' onClick={()=>{deleteMealEntry(req._id)}}>Delete</button>
+                                    </td>
 
                                 </tr>
                             )
