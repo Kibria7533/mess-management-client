@@ -3,8 +3,31 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Button from 'react-bootstrap/Button';
 import Link from "next/link";
+import axios from "axios";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {useState} from "react";
+import Router from "next/router";
 
 export default function Home() {
+const [mess_id,setMessId]=useState('');
+    const Join=async ()=>{
+        await axios.post("http://localhost:5000/mess/join-mess",{
+            mess_id
+        },{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`}})
+            .then((data)=>{
+                if(data.data.status==400){
+                    toast.error(data.data.msg)
+                }else{
+                    Router.push({
+                        pathname: '/statement',
+                        query: { mess_id: data.data.mess_id }
+                    });
+                }
+            })
+    }
     return (
         <div className={styles.container}>
             <Head>
@@ -27,8 +50,22 @@ export default function Home() {
                     background: "bisque",
                     border: 8,
                     borderRadius: "9px"}}>
-              <input placeholder={'Enter Mess Id'}/>
-               <button> Join</button>
+              <input placeholder={'Enter Mess Id'} type="text" name={"mess_name"}
+                     onChange={(e) => {
+                         setMessId(e.target.value);
+                     }} />
+               <button type={'button'} onClick={()=>Join()}> Join</button>
+                     <ToastContainer
+                         position="top-right"
+                         autoClose={5000}
+                         hideProgressBar={false}
+                         newestOnTop={false}
+                         closeOnClick
+                         rtl={false}
+                         pauseOnFocusLoss
+                         draggable
+                         pauseOnHover
+                     />
           </span>
 
 
