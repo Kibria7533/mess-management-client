@@ -166,18 +166,19 @@ const Signup=()=>{
 
                             </div>
 
-                            <label className="control-label"/>
-                            <div className="controls">
-                                <Link href={'/signin'} >
-                                    <button className={styleSignup.button} onClick={()=>Save()} >
-                                        SignIn
-                                    </button>
-                                </Link>
 
-                            </div>
 
                         </fieldset>
                     </form>
+                    <label className="control-label"/>
+                    <div className="controls">
+                        <Link href={'/signin'} >
+                            <button className={styleSignup.button}>
+                                SignIn
+                            </button>
+                        </Link>
+
+                    </div>
                 </div>
             </main>
     )
