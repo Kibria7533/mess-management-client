@@ -2,6 +2,10 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import axios from 'axios';
 import {useEffect, useState} from "react";
+import {Button} from "react-bootstrap";
+import {FaPlus} from "react-icons/fa";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 const MemberList=()=>{
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -72,6 +76,46 @@ const MemberList=()=>{
                     </table>
                 </div>
             </>
+
+            <div className={'row d-flex justify-content-end'}>
+                <Button className="btn btn-primary" variant="primary"  onClick={handleShow} >Add Member</Button>
+            </div>
+
+            {/*Modal*/}
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Search Member</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label></Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter member phone number"
+                                autoFocus
+                                onChange={(e)=>{
+                                    setDate(e.target.value)
+                                }}
+                            />
+                        </Form.Group>
+
+
+
+
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={()=>Save()}>
+                        Add
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+
         </Layout>
 
     )

@@ -121,7 +121,6 @@ const getRequestData=async ()=>{
             })
     }
 
-
     //DeleteMealEntry
     const deleteMealEntry = async (id) => {
       await axios.delete(`http://localhost:5000/meal-entry/${id}`)
@@ -138,7 +137,6 @@ const getRequestData=async ()=>{
               toast.error("Something Went Worng");
           })
     }
-
 
     return(
         <Layout>
@@ -164,7 +162,6 @@ const getRequestData=async ()=>{
                                     <td>{req.cost}</td>
                                     <td scope="col">
                                         <button className='btn btn-primary'>{req.status? "Accepted":"Pending"}</button>
-
                                     </td>
                                     <td scope="col">
                                         <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"BazarList",req)}>Accept</button>
@@ -173,7 +170,6 @@ const getRequestData=async ()=>{
                                     </td>
                                 </tr>
                             )
-
                         })}
                         </tbody>
 
