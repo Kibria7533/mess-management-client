@@ -98,7 +98,7 @@ const MemberList=()=>{
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div className="table-responsive">
+                    {members.length>0  &&  <div className="table-responsive">
                         <table className="table">
                             <thead>
                             <tr>
@@ -123,7 +123,7 @@ const MemberList=()=>{
                             })}
                             </tbody>
                         </table>
-                    </div>
+                    </div> }
                 </Modal.Footer>
             </Modal>
 
