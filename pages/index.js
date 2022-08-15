@@ -15,7 +15,6 @@ const Signup=()=>{
     const [password, setPassword] =useState("");
 
     useEffect(()=>{
-        console.log('loool',localStorage.getItem('access_token'))
         if(localStorage.getItem('access_token')){
             Router.push({
                 pathname: '/statement',

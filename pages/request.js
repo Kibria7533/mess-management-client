@@ -10,14 +10,16 @@ import {FaPlus} from "react-icons/fa";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {error} from "next/dist/build/output/log";
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 const Request=()=>{
 
     const [bazarlist,setBazarlist]=useState("")
     const [deposit,setDsposit]=useState("")
-    const [mealList,setMealList]=useState("")
+    const [mealList,setMealList]=useState("");
+    const [loading,setLoading]=useState(false);
 
 
 
@@ -37,12 +39,14 @@ const Request=()=>{
 
 //Get BazarList Deposit and MealList Table
 const getRequestData=async ()=>{
+        setLoading(true);
         await axios.get(`http://localhost:5000/request/all-request/${localStorage.getItem("mess_id")}`)
             .then((data)=>{
 
                 setBazarlist(data.data.data.bazarList)
                 setDsposit(data.data.data.deposit)
                 setMealList(data.data.data.mealList)
+                setLoading(false);
             })
             .catch((err)=>{
                 toast.error("Something Went worng")
@@ -141,6 +145,7 @@ const getRequestData=async ()=>{
     return(
         <Layout>
             <div className={styleRequestTbale.table_contaier}>
+            { !loading ?
                 <div className={`table-responsive ${styleRequestTbale.border}` }>
                     <h2> Bazar List</h2>
                     <table className="table">
@@ -165,18 +170,16 @@ const getRequestData=async ()=>{
                                     </td>
                                     <td scope="col">
                                         <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"BazarList",req)}>Accept</button>
-                                      / <button className='btn btn-danger' onClick={()=>deleteBazaList()} >Delete</button>
+                                        / <button className='btn btn-danger' onClick={()=>deleteBazaList()} >Delete</button>
 
                                     </td>
                                 </tr>
                             )
                         })}
                         </tbody>
-
-
                     </table>
-                </div>
-
+                </div> :<Skeleton/>
+                }
 
 
 
@@ -184,7 +187,7 @@ const getRequestData=async ()=>{
 
 
                 {/*Deposit List*/}
-                <div className="table-responsive">
+                {!loading ?  <div className="table-responsive">
                     <h2> Deposit List</h2>
                     <table className="table">
                         <thead>
@@ -216,7 +219,8 @@ const getRequestData=async ()=>{
                         })}
                         </tbody>
                     </table>
-                </div>
+                </div> : <Skeleton/> }
+
 
 
 
@@ -224,7 +228,7 @@ const getRequestData=async ()=>{
 
 
                 {/*Meal Entry List*/}
-                <div className="table-responsive">
+                {!loading ? <div className="table-responsive">
                     <h2> Meal Entry List</h2>
                     <table className="table">
                         <thead>
@@ -261,7 +265,8 @@ const getRequestData=async ()=>{
                         })}
                         </tbody>
                     </table>
-                </div>
+                </div> : <Skeleton/>
+                }
 
 
 

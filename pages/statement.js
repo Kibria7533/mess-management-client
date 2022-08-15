@@ -3,29 +3,31 @@ import Layout from "../components/Layout";
 import styleSignup from "../styles/signup.module.css";
 import {useEffect} from "react";
 import axios from "axios";
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
-const Statement=()=>{
+const Statement = () => {
     const router = useRouter()
 
 
-    useEffect(()=>{
+    useEffect(() => {
         getMonthlyStatement();
-        localStorage.setItem("mess_id",router.query.mess_id);
+        localStorage.setItem("mess_id", router.query.mess_id);
 
     })
-const  getMonthlyStatement=async()=>{
-        try{
-            let data=await axios.get();
-            if(data){
+    const getMonthlyStatement = async () => {
+        try {
+            let data = await axios.get();
+            if (data) {
 
             }
-        }catch (err){
+        } catch (err) {
 
         }
 
-}
-    return(
+    }
+    return (
         <Layout>
             <h4> Mess Id {router.query.mess_id}</h4>
             <div className={'net__meal'}>
@@ -33,69 +35,69 @@ const  getMonthlyStatement=async()=>{
                 <span className={'net__lunch'}>Lunch:  6</span>
                 <span className={'net__dinner'}>Dinner:  20</span>
             </div>
-        <div>
-            <article className="statement">
-                <div className={'statement__header'}>
-                    <h1 className="statement__title"><span className="statement__title--top">Mess</span><span
-                        className="statement__title--bottom">Statement</span></h1>
-                </div>
+            <div>
+                <article className="statement">
+                    <div className={'statement__header'}>
+                        <h1 className="statement__title"><span className="statement__title--top">Mess</span><span
+                            className="statement__title--bottom">Statement</span></h1>
+                    </div>
 
-                <main className="statement__profiles">
-                    <article className="statement__profile">
-                        <span className="statement__name">Totoal Deposite</span>
-                        <span className="statement__value">35.7<span>B</span></span>
-                    </article>
+                    <main className="statement__profiles">
+                        <article className="statement__profile">
+                            <span className="statement__name">Totoal Deposite</span>
+                            <span className="statement__value">35.7<span>B</span></span>
+                        </article>
 
-                    <article className="statement__profile">
-                        <span className="statement__name">Cost</span>
-                        <span className="statement__value">9.9<span>B</span></span>
-                    </article>
+                        <article className="statement__profile">
+                            <span className="statement__name">Cost</span>
+                            <span className="statement__value">9.9<span>B</span></span>
+                        </article>
 
-                    <article className="statement__profile">
-                        <span className="statement__name">Balance</span>
-                        <span className="statement__value">9.9<span>B</span></span>
-                    </article>
-
-
-                    <article className="statement__profile">
-                        <span className="statement__name">Total Meal</span>
-                        <span className="statement__value">9.9<span>B</span></span>
-                    </article>
-
-                    <article className="statement__profile">
-                        <span className="statement__name">Meal Rate</span>
-                        <span className="statement__value">9.9<span>B</span></span>
-                    </article>
-                </main>
-            </article>
-            <article className="statement">
-                <div className={'statement__header'}>
-                    <h1 className="statement__title"><span className="statement__title--top">My</span><span
-                        className="statement__title--bottom">statement</span></h1>
-                </div>
-
-                <main className="statement__profiles">
-                    <article className="statement__profile">
-                        <span className="statement__name">Deposite</span>
-                        <span className="statement__value">35.7<span>B</span></span>
-                    </article>
-
-                    <article className="statement__profile">
-                        <span className="statement__name">Balance</span>
-                        <span className="statement__value">9.9<span>B</span></span>
-                    </article>
+                        <article className="statement__profile">
+                            <span className="statement__name">Balance</span>
+                            <span className="statement__value">9.9<span>B</span></span>
+                        </article>
 
 
-                    <article className="statement__profile">
-                        <span className="statement__name">Total Meal</span>
-                        <span className="statement__value">9.9<span>B</span></span>
-                    </article>
-                </main>
-            </article>
-        </div>
+                        <article className="statement__profile">
+                            <span className="statement__name">Total Meal</span>
+                            <span className="statement__value">9.9<span>B</span></span>
+                        </article>
+
+                        <article className="statement__profile">
+                            <span className="statement__name">Meal Rate</span>
+                            <span className="statement__value">9.9<span>B</span></span>
+                        </article>
+                    </main>
+                </article>
+                <article className="statement">
+                    <div className={'statement__header'}>
+                        <h1 className="statement__title"><span className="statement__title--top">My</span><span
+                            className="statement__title--bottom">statement</span></h1>
+                    </div>
+
+                    <main className="statement__profiles">
+                        <article className="statement__profile">
+                            <span className="statement__name">Deposite</span>
+                            <span className="statement__value">35.7<span>B</span></span>
+                        </article>
+
+                        <article className="statement__profile">
+                            <span className="statement__name">Balance</span>
+                            <span className="statement__value">9.9<span>B</span></span>
+                        </article>
+
+
+                        <article className="statement__profile">
+                            <span className="statement__name">Total Meal</span>
+                            <span className="statement__value">9.9<span>B</span></span>
+                        </article>
+                    </main>
+                </article>
+            </div>
             <br/>
             <hr/>
-            <label className="control-label"  />
+            <label className="control-label"/>
             <div className="controls">
                 <Link href={'/manage'}>
                     <button className={styleSignup.button}
@@ -108,4 +110,4 @@ const  getMonthlyStatement=async()=>{
     )
 }
 
-export default  Statement
+export default Statement
