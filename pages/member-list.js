@@ -26,7 +26,7 @@ const MemberList=()=>{
          getMemberList();
     },[])
     const getMemberList=async()=>{
-        await axios.get("http://localhost:5000/member")
+        await axios.get(`http://localhost:5000/mess/all-member/${localStorage.getItem('mess_id')}`)
             .then((data)=>{
                 console.log(data.data);
                 setMemberList(data.data);
@@ -35,13 +35,53 @@ const MemberList=()=>{
                 console.log(err)
             })
     }
+const CheckExist=(phone_no)=>{
+    members.forEach((e)=>{
+        console.log(e.phone_no,phone_no,e.phone_no==phone_no)
+     if(e.phone_no==phone_no)
+         return true;
+    })
+    return false;
+}
     const Save=async (search_term)=>{
         await axios.get(`http://localhost:5000/search/member/elastic-search/?search_term=${search_term}`)
             .then((data)=>{
+                let mem=[...memberList];
+                let search=[...data.data];
+                mem.forEach((b)=>{
+                    search.forEach((a)=>{
+                        if(b.phone_no=== a.phone_no){
+                            a.check = true;
+                        }
+                    })
+                })
+                console.log(data.data,'data.data')
                 setMembers(data.data)
             })
     }
 
+    const AddMemberToMess=async (phone_no)=>{
+        await axios.post("http://localhost:5000/mess/add-member-to-mess",{
+             phone_no:phone_no,
+             mess_id: localStorage.getItem("mess_id")
+        },{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }})
+            .then((data)=>{
+               getMemberList();
+                let mem=[...memberList];
+                let search=[...members];
+                mem.forEach((b)=>{
+                    search.forEach((a)=>{
+                        if(b.phone_no=== a.phone_no){
+                            a.check = true;
+                        }
+                    })
+                })
+                setMembers(search)
+            })
+    }
     return(
         <Layout>
             <>
@@ -52,7 +92,6 @@ const MemberList=()=>{
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Phone</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -63,7 +102,6 @@ const MemberList=()=>{
                                     <td>{idx+1}</td>
                                     <td>{member.name}</td>
                                     <td>{member.phone_no}</td>
-                                    <td>{member.status ?? 'pending'}</td>
                                     <td><Link href={"/"}>Delete</Link></td>
                                 </tr>
                             )
@@ -98,7 +136,7 @@ const MemberList=()=>{
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    {members.length>0  &&  <div className="table-responsive">
+                    {members.length>0  ?  <div className="table-responsive">
                         <table className="table">
                             <thead>
                             <tr>
@@ -117,13 +155,13 @@ const MemberList=()=>{
                                         <td>{member.name}</td>
                                         <td>{member.email}</td>
                                         <td>{member.phone_no}</td>
-                                        <td> <button className='btn btn-warning'>Add</button></td>
+                                        <td>{member.check?  <button className='btn btn-warning' disabled={true}>Added</button> : <button className='btn btn-warning' onClick={()=>AddMemberToMess(member.phone_no)}>Add</button>}</td>
                                     </tr>
                                 )
                             })}
                             </tbody>
                         </table>
-                    </div> }
+                    </div> :<div><p>No Result Found</p></div> }
                 </Modal.Footer>
             </Modal>
 

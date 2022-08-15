@@ -19,7 +19,7 @@ const [mess_id,setMessId]=useState('');
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`}})
             .then((data)=>{
                 console.log(data,'lool')
-                if(data.data.status==400){
+                if(data.data.status==404){
                     toast.error(data.data.msg)
                 }else{
                     Router.push({
