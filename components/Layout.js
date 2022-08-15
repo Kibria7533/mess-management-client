@@ -2,7 +2,8 @@ import styles from '../styles/Layout.module.css'
 import Nav from "./Nav";
 import {useRouter} from "next/router";
 import {useEffect} from "react";
-const Layout=({children})=>{
+const Layout=({children,token})=>{
+    console.log(token,'loool');
     const router = useRouter();
 
     useEffect(() => {

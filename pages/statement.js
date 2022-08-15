@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 const Statement=()=>{
     const router = useRouter()
-    console.log(router.query);
+
 
     useEffect(()=>{
         getMonthlyStatement();

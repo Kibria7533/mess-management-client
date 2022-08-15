@@ -10,7 +10,7 @@ const Nav = () => {
             localStorage.removeItem('mess_id');
 
         Router.push({
-            pathname: '/',
+            pathname: '/signin',
         });
 
     }

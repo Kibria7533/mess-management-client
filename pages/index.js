@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import styleSignup from '../styles/signup.module.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from 'axios';
 import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,6 +14,15 @@ const Signup=()=>{
     const [address, setAddress]=useState("");
     const [password, setPassword] =useState("");
 
+    useEffect(()=>{
+        console.log('loool',localStorage.getItem('access_token'))
+        if(localStorage.getItem('access_token')){
+            Router.push({
+                pathname: '/statement',
+                query: {mess_id: localStorage.getItem('mess_id')}
+            });
+        }
+    },[])
     const Save=async(e)=>{
         e.preventDefault();
         if(!name || !email || !phone_no || !address || !password){
@@ -21,6 +30,7 @@ const Signup=()=>{
             toast.error('Please fill the form')
             return;
         }
+
 
         await axios.post("http://localhost:5000/auth/signup",{
             name,
