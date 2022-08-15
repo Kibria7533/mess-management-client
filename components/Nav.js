@@ -1,7 +1,19 @@
 import Link from 'next/link'
 import navStyles from '../styles/Nav.module.css'
+import Router from 'next/router'
 
 const Nav = () => {
+
+    const logout=()=>{
+
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('mess_id');
+
+        Router.push({
+            pathname: '/',
+        });
+
+    }
     return (
         <nav className={navStyles.nav}>
             <ul>
@@ -10,7 +22,7 @@ const Nav = () => {
                 </li>
 
                 <li>
-                    <Link href='/logout'>Logout</Link>
+                    <button  onClick={()=>logout()}>Logout</button>
                 </li>
 
             </ul>
