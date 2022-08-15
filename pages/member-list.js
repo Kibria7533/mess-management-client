@@ -16,13 +16,15 @@ const MemberList=()=>{
     const [name, setName]=useState(" ");
     const [amount, setAmount]=useState(" ");
     const [status, setStatus]=useState(" ");
+    const [members,setMembers]=useState([]);
+
 
     //get deposit
     const [memberList,setMemberList]=useState([])
 
     useEffect(()=>{
-        getMemberList();
-    })
+         getMemberList();
+    },[])
     const getMemberList=async()=>{
         await axios.get("http://localhost:5000/member")
             .then((data)=>{
@@ -33,16 +35,10 @@ const MemberList=()=>{
                 console.log(err)
             })
     }
-    const Save=async ()=>{
-        await axios.post("http://localhost:5000/member",{
-            date,
-            name,
-            amount,
-            status
-        },{headers: {'Accept': 'application/json',
-                'Content-Type': 'application/json'}})
+    const Save=async (search_term)=>{
+        await axios.get(`http://localhost:5000/search/member/elastic-search/?search_term=${search_term}`)
             .then((data)=>{
-                console.log(data);
+                setMembers(data.data)
             })
     }
 
@@ -92,26 +88,42 @@ const MemberList=()=>{
                             <Form.Label></Form.Label>
                             <Form.Control
                                 type="text"
+                                name={"search_term"}
                                 placeholder="Enter member phone number"
                                 autoFocus
-                                onChange={(e)=>{
-                                    setDate(e.target.value)
-                                }}
+                                onChange={(e)=>Save(e.target.value)
+                                }
                             />
                         </Form.Group>
-
-
-
-
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={()=>Save()}>
-                        Add
-                    </Button>
+                    <div className="table-responsive">
+                        <table className="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {members.length>0 && members.map((member,idx)=>{
+                                return(
+                                    <tr key={idx+1}>
+                                        <td>{idx+1}</td>
+                                        <td>{member.name}</td>
+                                        <td>{member.email}</td>
+                                        <td>{member.phone_no}</td>
+                                        <td> <button className='btn btn-warning'>Add</button></td>
+                                    </tr>
+                                )
+                            })}
+                            </tbody>
+                        </table>
+                    </div>
                 </Modal.Footer>
             </Modal>
 
