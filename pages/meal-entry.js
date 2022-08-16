@@ -39,7 +39,7 @@ const Save=async ()=>{
           <Form.Group className="mb-3" >
             <Form.Label>Date
             </Form.Label>
-            <Form.Control type="date" className={styleMealEntry.meal_entry} placeholder="Enter your date"
+            <Form.Control type="date" name={"date"} value={date} className={styleMealEntry.meal_entry} placeholder="Enter your date"
                           onChange={(e)=>{
                             setDate(e.target.value);
                           }}
@@ -49,7 +49,7 @@ const Save=async ()=>{
           <Form.Group className="mb-3" >
             <Form.Label>Break Fast
             </Form.Label>
-            <Form.Control className={styleMealEntry.meal_entry} type="number" placeholder="Enter your break fast"
+            <Form.Control className={styleMealEntry.meal_entry} name={"break_fast"} value={break_fast} type="number" placeholder="Enter your break fast"
                           onChange={(e)=>{
                             setBreak_fast(e.target.value);
                           }}
@@ -59,7 +59,7 @@ const Save=async ()=>{
           <Form.Group className="mb-3" >
             <Form.Label>Lunch
             </Form.Label>
-            <Form.Control className={styleMealEntry.meal_entry} type="number" placeholder="Enter your lunch"
+            <Form.Control className={styleMealEntry.meal_entry} type="number" name={"lunch"} value={lunch} placeholder="Enter your lunch"
                           onChange={(e)=>{
                             setLunch(e.target.value);
                           }}
@@ -68,7 +68,7 @@ const Save=async ()=>{
           <Form.Group className="mb-3" >
             <Form.Label>Dinner
             </Form.Label>
-            <Form.Control className={styleMealEntry.meal_entry} type="number" placeholder="Enter your dinner"
+            <Form.Control className={styleMealEntry.meal_entry} type="number"  name={"dinner"} value={dinner} placeholder="Enter your dinner"
                           onChange={(e)=>{
                             setDinner(e.target.value)
                           }}
@@ -78,7 +78,7 @@ const Save=async ()=>{
           <Form.Group className="mb-3" >
             <Form.Label className={styleMealEntry.label}>Meal of :
             </Form.Label>
-            <Form.Control className={styleMealEntry.meal_entry}  type="text" placeholder="Enter meal of"
+            <Form.Control className={styleMealEntry.meal_entry} name={"meal_of"} value={meal_of}  type="text" placeholder="Enter meal of"
                           onChange={(e)=>{
                             setMeal_of(e.target.value)
                           }}
