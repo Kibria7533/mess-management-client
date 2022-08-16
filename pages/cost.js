@@ -46,7 +46,7 @@ const Cost = () => {
     const [costData,setCostdata]=useState([ ])
     useEffect(()=>{
         getDeposit();
-    })
+    },[])
     const getDeposit=async()=>{
         await axios.get("http://localhost:5000/bazar-list")
             .then((data)=>{
@@ -71,7 +71,6 @@ const Cost = () => {
                             <th scope="col">Name</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -80,10 +79,9 @@ const Cost = () => {
                                <tr>
                                    <td>{idx+1}</td>
                                    <td>{cost.createdAt}</td>
-                                   <td>{cost.name_of_person}</td>
+                                   <td>{cost.item_name}</td>
                                    <td>{cost.cost}</td>
                                    <td>pending</td>
-                                   <td><FaTrashAlt/></td>
                                </tr>
                            )
                         })}

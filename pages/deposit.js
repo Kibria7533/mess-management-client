@@ -21,7 +21,7 @@ const Deposit=()=>{
     const [depositList,setdepositlist]=useState([ ])
     useEffect(()=>{
         getDeposit();
-    })
+    },[])
    const getDeposit=async()=>{
     await axios.get("http://localhost:5000/deposit")
         .then((data)=>{
@@ -67,7 +67,6 @@ const Deposit=()=>{
                         <th scope="col">Name</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>

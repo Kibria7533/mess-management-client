@@ -22,6 +22,7 @@ const [mess_id,setMessId]=useState('');
                 if(data.data.status==404){
                     toast.error(data.data.msg)
                 }else{
+                    localStorage.setItem('mess_id',data.data.mess_id);
                     Router.push({
                         pathname: '/statement',
                         query: { mess_id: data.data.mess_id }

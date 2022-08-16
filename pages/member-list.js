@@ -92,7 +92,6 @@ const CheckExist=(phone_no)=>{
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Phone</th>
-                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -102,7 +101,6 @@ const CheckExist=(phone_no)=>{
                                     <td>{idx+1}</td>
                                     <td>{member.name}</td>
                                     <td>{member.phone_no}</td>
-                                    <td><Link href={"/"}>Delete</Link></td>
                                 </tr>
                             )
                         })}

@@ -1,13 +1,13 @@
+import React from "react";
 import styleMealEntry from "../styles/mealEntry.module.css";
 import Layout from "../components/Layout";
 import Form from "react-bootstrap/Form";
-import CreateMessstyles from "../styles/CreateMess.module.css";
 import {Button} from "react-bootstrap";
 import {useState} from "react";
 import axios from "axios";
 
-const mealEntry = () => {
-  const [date, setDate]=useState(" ")
+const MealEntry = () => {
+  const [date, setDate]= useState(" ")
   const [break_fast,setBreak_fast]=useState(0);
   const [lunch,setLunch]=useState(0);
   const [dinner,setDinner]=useState(0);
@@ -25,6 +25,11 @@ const Save=async ()=>{
       }})
       .then((data)=>{
         console.log(data)
+          setBreak_fast(0);
+        setLunch(0);
+        setDinner(0);
+        setDate(0);
+        setMeal_of(0);
       })
 }
   return (
@@ -87,4 +92,4 @@ const Save=async ()=>{
   );
 };
 
-export default mealEntry;
+export default MealEntry;

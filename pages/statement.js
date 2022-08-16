@@ -1,35 +1,43 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
 import styleSignup from "../styles/signup.module.css";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import {useRouter} from 'next/router'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const Statement = () => {
-    const router = useRouter()
+    const router = useRouter();
+    const [mess_id,setMessId]=useState('');
+
 
 
     useEffect(() => {
+
+        // localStorage.setItem("mess_id", router.query.mess_id);
+        setMessId(localStorage.getItem('mess_id'));
         getMonthlyStatement();
-        localStorage.setItem("mess_id", router.query.mess_id);
+    },[])
 
-    })
-    const getMonthlyStatement = async () => {
-        try {
-            let data = await axios.get();
-            if (data) {
-
-            }
-        } catch (err) {
-
+        const getMonthlyStatement=async()=>{
+            await axios.get(`http://localhost:5000/monthly-statement/get-statement/${localStorage.getItem('mess_id')}`,{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }})
+                .then((data)=>{
+                    console.log(data.data);
+                    // setMealReportList(data.data);
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
         }
 
-    }
+
     return (
         <Layout>
-            <h4> Mess Id {router.query.mess_id}</h4>
+            <h4> Mess Id {router.query.mess_id ?? mess_id}</h4>
             <div className={'net__meal'}>
                 <span className={'net__breakfast'}>Breakfast:  2</span>
                 <span className={'net__lunch'}>Lunch:  6</span>
@@ -45,17 +53,17 @@ const Statement = () => {
                     <main className="statement__profiles">
                         <article className="statement__profile">
                             <span className="statement__name">Totoal Deposite</span>
-                            <span className="statement__value">35.7<span>B</span></span>
+                            <span className="statement__value">35.7<span></span></span>
                         </article>
 
                         <article className="statement__profile">
                             <span className="statement__name">Cost</span>
-                            <span className="statement__value">9.9<span>B</span></span>
+                            <span className="statement__value">9.9<span></span></span>
                         </article>
 
                         <article className="statement__profile">
                             <span className="statement__name">Balance</span>
-                            <span className="statement__value">9.9<span>B</span></span>
+                            <span className="statement__value">9.9<span></span></span>
                         </article>
 
 
@@ -66,7 +74,7 @@ const Statement = () => {
 
                         <article className="statement__profile">
                             <span className="statement__name">Meal Rate</span>
-                            <span className="statement__value">9.9<span>B</span></span>
+                            <span className="statement__value">9.9<span></span></span>
                         </article>
                     </main>
                 </article>
@@ -79,18 +87,18 @@ const Statement = () => {
                     <main className="statement__profiles">
                         <article className="statement__profile">
                             <span className="statement__name">Deposite</span>
-                            <span className="statement__value">35.7<span>B</span></span>
+                            <span className="statement__value">35.7<span></span></span>
                         </article>
 
                         <article className="statement__profile">
                             <span className="statement__name">Balance</span>
-                            <span className="statement__value">9.9<span>B</span></span>
+                            <span className="statement__value">9.9<span></span></span>
                         </article>
 
 
                         <article className="statement__profile">
                             <span className="statement__name">Total Meal</span>
-                            <span className="statement__value">9.9<span>B</span></span>
+                            <span className="statement__value">9.9<span></span></span>
                         </article>
                     </main>
                 </article>

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import navStyles from '../styles/Nav.module.css'
 import Router from 'next/router'
+import {FaFortAwesomeAlt} from "react-icons/fa";
 
 const Nav = () => {
 
@@ -19,6 +20,9 @@ const Nav = () => {
             <ul>
                 <li>
                     <Link href='/statement'>Home</Link>
+                </li>
+                <li>
+                    <Link href='/profile'><button>Profile  <FaFortAwesomeAlt/></button></Link>
                 </li>
 
                 <li>
