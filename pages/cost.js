@@ -6,6 +6,9 @@ import {useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const Cost = () => {
 
@@ -13,6 +16,8 @@ const Cost = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [loading,setLoading]=useState(false);
+
 
     // cost  usestate
     const [date,setDate]=useState(" ")
@@ -62,6 +67,7 @@ const Cost = () => {
 
     return (
         <Layout>
+            { !loading ?
                 <div className="table-responsive">
                     <table className="table">
                         <thead>
@@ -87,13 +93,15 @@ const Cost = () => {
                         })}
                         </tbody>
                     </table>
-                </div>
+                </div>:<Skeleton/>
+            }
                 <div className={'row d-flex justify-content-end'}>
                     <Button className="btn btn-primary" variant="primary"  onClick={handleShow} ><FaPlus/></Button>
                 </div>
 
 
             {/*Modal*/}
+            {!loading ?
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Deposit</Modal.Title>
@@ -146,7 +154,8 @@ const Cost = () => {
                         Add
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal>:<Skeleton/>
+            }
         </Layout>
     )
 }
