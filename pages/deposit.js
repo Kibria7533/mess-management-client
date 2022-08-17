@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import {toast} from "react-toastify";
 
 
 const Deposit=()=>{
@@ -30,11 +31,11 @@ const Deposit=()=>{
    const getDeposit=async()=>{
     await axios.get("http://localhost:5000/deposit")
         .then((data)=>{
-            console.log(data);
+            toast.error(data.data)
             setdepositlist(data.data);
         })
         .catch((err)=>{
-            console.log(err)
+          toast.error("Something Went Wrong")
        })
     }
     const Save=async ()=>{
@@ -48,7 +49,7 @@ const Deposit=()=>{
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }})
             .then((data)=>{
-                console.log(data);
+                toast.error(data.data)
                 setShow(false);
             })
     }

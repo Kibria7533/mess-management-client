@@ -21,7 +21,7 @@ const [mess_id,setMessId]=useState('');
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`}})
             .then((data)=>{
-                console.log(data,'lool')
+
                 if(data.data.status==404){
                     toast.error(data.data.msg)
                 }else{

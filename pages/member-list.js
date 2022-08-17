@@ -8,6 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import {toast} from "react-toastify";
 
 
 
@@ -34,11 +35,11 @@ const MemberList=()=>{
     const getMemberList=async()=>{
         await axios.get("http://localhost:5000/member")
             .then((data)=>{
-                console.log(data.data);
+                toast.error(data.data)
                 setMemberList(data.data);
             })
             .catch((err)=>{
-                console.log(err)
+               toast.error("Something Went Wrong")
             })
     }
     const Save=async ()=>{
@@ -50,7 +51,7 @@ const MemberList=()=>{
         },{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json'}})
             .then((data)=>{
-                console.log(data);
+                toast.error(data.data)
             })
     }
 

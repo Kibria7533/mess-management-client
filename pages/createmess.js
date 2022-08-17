@@ -39,7 +39,7 @@ export default function createmess() {
             .then((data) => {
                 if (data.data.success) {
                     toast.success(data.data.msg);
-                    console.log(data);
+                    toast.error(data.data)
                      Router.push({
                          pathname: '/statement',
                          query: { mess_id: data.data.mess_info.mess_id }

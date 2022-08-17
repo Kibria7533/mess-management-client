@@ -7,6 +7,7 @@ import {useState} from "react";
 import axios from "axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import {toast} from "react-toastify";
 
 const MealEntry = () => {
   const [date, setDate]= useState(" ")
@@ -30,7 +31,7 @@ const MealEntry = () => {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
       }})
       .then((data)=>{
-        console.log(data)
+        toast.error(data.data)
           setBreak_fast(0);
         setLunch(0);
         setDinner(0);

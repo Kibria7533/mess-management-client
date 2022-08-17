@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import {toast} from "react-toastify";
 
 const MealReport=()=>{
     const [show, setShow] = useState(false);
@@ -29,11 +30,11 @@ const MealReport=()=>{
     const getMemberList=async()=>{
         await axios.get("http://localhost:5000/meal-entry")
             .then((data)=>{
-                console.log(data.data);
+                toast.error(data.data)
                 setMealReportList(data.data);
             })
             .catch((err)=>{
-                console.log(err)
+                toast.error("Something Went Wrong")
             })
     }
     const Save=async ()=>{
@@ -45,7 +46,7 @@ const MealReport=()=>{
         },{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json'}})
             .then((data)=>{
-                console.log(data);
+                toast.error(data.data)
             })
     }
 

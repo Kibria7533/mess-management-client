@@ -42,7 +42,7 @@ const getRequestData=async ()=>{
         setLoading(true);
         await axios.get(`http://localhost:5000/request/all-request/${localStorage.getItem("mess_id")}`)
             .then((data)=>{
-
+                toast.error(data.data)
                 setBazarlist(data.data.data.bazarList)
                 setDsposit(data.data.data.deposit)
                 setMealList(data.data.data.mealList)
@@ -63,11 +63,11 @@ const getRequestData=async ()=>{
             item_name
         })
             .then(res=>{
-                console.log(res.data)
+                toast.error(res.data)
                 setShow(false);
             })
             .catch(err=>{
-                console.log(err)
+               toast.error("Somethong Error")
             })
     }
 

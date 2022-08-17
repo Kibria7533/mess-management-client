@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Router from 'next/router'
 import 'react-loading-skeleton/dist/skeleton.css'
-import {useState} from "react";
+
 import Skeleton from "react-loading-skeleton";
 
  const  Signin=()=>{
@@ -23,6 +23,7 @@ import Skeleton from "react-loading-skeleton";
          },{headers: {'Accept': 'application/json',
                  'Content-Type': 'application/json'}})
              .then((data)=>{
+                 toast.error(data.data)
                  localStorage.setItem("access_token",data.data.access_token);
                  Router.push('/welcome')
              }).catch(err=>{
@@ -102,7 +103,14 @@ import Skeleton from "react-loading-skeleton";
 
 
                                  </div>
+                                 <div className="controls">
+                                     <Link href={'/'}>
+                                         <button className={styleSignup.button}>
+                                             SignUp
+                                         </button>
+                                     </Link>
 
+                                 </div>
 
                              </fieldset>
                          </form>

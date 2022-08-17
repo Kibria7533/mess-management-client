@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import {toast} from "react-toastify";
 
 
 const Cost = () => {
@@ -40,7 +41,7 @@ const Cost = () => {
 
             }})
             .then((data)=>{
-                console.log(data)
+                toast.error(data.data)
                 setShow(false);
             })
     }

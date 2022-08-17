@@ -6,6 +6,7 @@ import axios from "axios";
 import {useRouter} from 'next/router'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import {toast} from "react-toastify";
 
 const Statement = () => {
     const router = useRouter();
@@ -29,11 +30,11 @@ const Statement = () => {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }})
                 .then((data)=>{
-                    console.log(data.data);
+                    toast.error(data.data)
                     // setMealReportList(data.data);
                 })
                 .catch((err)=>{
-                    console.log(err)
+                  toast.error("Something Went Wrong")
                 })
         }
 
