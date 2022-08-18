@@ -3,6 +3,7 @@ import Link from "next/link";
 import Style from '../styles/Table.module.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
+import styleMealReport from '../styles/mealReport.module.css'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import {toast} from "react-toastify";
@@ -25,30 +26,31 @@ const MealReport=()=>{
     const [mealReportList,setMealReportList]=useState([])
 
     useEffect(()=>{
-        getMemberList();
-    })
-    const getMemberList=async()=>{
+        getMealReportList();
+    },[])
+    const getMealReportList=async()=>{
         await axios.get("http://localhost:5000/meal-entry")
             .then((data)=>{
                 toast.error(data.data)
+                console.log(data.data)
                 setMealReportList(data.data);
             })
             .catch((err)=>{
                 toast.error("Something Went Wrong")
             })
     }
-    const Save=async ()=>{
-        await axios.post("http://localhost:5000/member",{
-            date,
-            name,
-            amount,
-            status
-        },{headers: {'Accept': 'application/json',
-                'Content-Type': 'application/json'}})
-            .then((data)=>{
-                toast.error(data.data)
-            })
-    }
+    // const Save=async ()=>{
+    //     await axios.post("http://localhost:5000/member",{
+    //         date,
+    //         name,
+    //         amount,
+    //         status
+    //     },{headers: {'Accept': 'application/json',
+    //             'Content-Type': 'application/json'}})
+    //         .then((data)=>{
+    //             toast.error(data.data)
+    //         })
+    // }
 
     return(
         <Layout>
@@ -57,6 +59,7 @@ const MealReport=()=>{
                     <div className="table-responsive ">
                         <table className="table table-striped">
                             <thead>
+                            {/*{mealReportList.length>0 && mealReportList.map()}*/}
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Date</th>

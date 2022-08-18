@@ -24,7 +24,7 @@ const Profile=()=>{
     const getMemberList=async()=>{
         await axios.get("http://localhost:5000/member")
             .then((data)=>{
-                console.log(data.data)
+              toast.error(data.data)
                 setProfileUser(data.data);
             })
             .catch((err)=>{
