@@ -1,0 +1,41 @@
+
+.grid{
+    display: grid;
+    grid-template-columns: 30% 60%;
+    gap:4rem;
+}
+
+.profile_main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem;
+    color: #555;
+    background-color: #DDDDDD;
+    margin-bottom: 0.1rem;
+    border-radius: 0.3rem;
+    font-size: 1.5rem;
+    transition: all 0.5s ease-in-out;
+}
+/*#999;*/
+
+.profile_child{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile_main:hover{
+    background-color: #b9b7b7;
+}
+
+.icon:after{
+    content: " ";
+    margin-right: 1rem;
+    border-right: 0.2rem solid #575656;
+    padding:0.5rem;
+}
+
+.heading{
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
