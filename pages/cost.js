@@ -56,11 +56,11 @@ const Cost = () => {
     const getDeposit=async()=>{
         await axios.get("http://localhost:5000/bazar-list")
             .then((data)=>{
-                console.log(data)
+               toast.error(data.data)
                 setCostdata(data.data)
             })
             .catch((err)=>{
-                console.log(err);
+               toast.error("Something Went Wrong")
             })
     }
 
