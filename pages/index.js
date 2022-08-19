@@ -153,7 +153,7 @@ const Signup=()=>{
                                             name="password"
                                             placeholder="Enter your Password"
                                             className={styleSignup.inputs}
-                                            type="text"
+                                            type="password"
                                             onChange={(e) => {
                                                 setPassword(e.target.value)
                                             }}

@@ -41,8 +41,11 @@ const Cost = () => {
 
             }})
             .then((data)=>{
-                toast.error(data.data)
+
                 setShow(false);
+            })
+            .catch((err)=>{
+                toast.error("Something Went Wrong")
             })
     }
 

@@ -42,6 +42,8 @@ const getRequestData=async ()=>{
         setLoading(true);
         await axios.get(`http://localhost:5000/request/all-request/${localStorage.getItem("mess_id")}`)
             .then((data)=>{
+
+
                 toast.error(data.data)
                 setBazarlist(data.data.data.bazarList)
                 setDsposit(data.data.data.deposit)
