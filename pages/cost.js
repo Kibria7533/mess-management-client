@@ -41,8 +41,17 @@ const Cost = () => {
 
             }})
             .then((data)=>{
-                toast.error(data.data)
-                setShow(false);
+
+                if(data.data.status==404){
+                    toast.error(data.data.msg)
+
+                }else{
+                    toast.success(data.data.msg);
+                    setShow(false);
+                }
+            })
+            .catch(err=>{
+                toast.error(err.response.data.message[0]);
             })
     }
 
@@ -56,11 +65,15 @@ const Cost = () => {
     const getDeposit=async()=>{
         await axios.get("http://localhost:5000/bazar-list")
             .then((data)=>{
-               toast.error(data.data)
-                setCostdata(data.data)
+                if(data.data.status==404){
+                    toast.error(data.data.msg)
+                }else{
+                    toast.success(data.data.success);
+                    setCostdata(data.data);
+                }
             })
             .catch((err)=>{
-               toast.error("Something Went Wrong")
+                toast.error(err.response.data.message[0]);
             })
     }
 
@@ -83,7 +96,7 @@ const Cost = () => {
                         <tbody>
                         {costData.length>0 && costData.map((cost,idx)=>{
                            return(
-                               <tr>
+                               <tr key={idx}>
                                    <td>{idx+1}</td>
                                    <td>{cost.createdAt}</td>
                                    <td>{cost.item_name}</td>

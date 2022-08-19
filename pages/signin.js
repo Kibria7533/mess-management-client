@@ -23,11 +23,15 @@ import Skeleton from "react-loading-skeleton";
          },{headers: {'Accept': 'application/json',
                  'Content-Type': 'application/json'}})
              .then((data)=>{
-                 toast.error(data.data)
-                 localStorage.setItem("access_token",data.data.access_token);
-                 Router.push('/welcome')
+                 if(data.data.status==404){
+                     toast.error(data.data.msg);
+                 }else{
+                     toast.success(data.data.msg);
+                     localStorage.setItem("access_token",data.data.access_token);
+                     Router.push('/welcome')
+                 }
              }).catch(err=>{
-                 toast.error('Wrong Credentials')
+                 toast.error(err.response.data.msg)
              })
      }
 

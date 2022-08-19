@@ -35,11 +35,16 @@ const MemberList=()=>{
     const getMemberList=async()=>{
         await axios.get("http://localhost:5000/member")
             .then((data)=>{
-                toast.error(data.data)
-                setMemberList(data.data);
+              ;
+                if(data.data.status==404){
+                    toast.error(data.data.msg);
+                }else{
+                    toast.success(data.data.msg);
+                    setMemberList(data.data)
+                }
             })
             .catch((err)=>{
-               toast.error("Something Went Wrong")
+               toast.error(err.response.data.msg[0]);
             })
     }
     const Save=async ()=>{
@@ -51,7 +56,13 @@ const MemberList=()=>{
         },{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json'}})
             .then((data)=>{
-                toast.error(data.data)
+               if(data.data.success){
+                   toast.success(data.data.msg)
+               }else if(! data.data.success){
+                   toast.error(data.data.msg);
+               }
+            }).catch(err=>{
+                toast.error(err.response.data.msg[0]);
             })
     }
 

@@ -51,12 +51,12 @@ const Signup=()=>{
                 if(data.data.status == 404)
                     toast.error(data.data.msg)
                 else if(data.data.status==201){
-                    toast.error(data.data.msg)
+                    toast.success(data.data.msg)
                       Router.push('/signin')
                 }
 
             }).catch(err=>{
-                toast.error("Something Wrong")
+                toast.error(err.response.data.msg[0])
         })
     }
 

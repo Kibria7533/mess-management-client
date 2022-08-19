@@ -42,14 +42,18 @@ const getRequestData=async ()=>{
         setLoading(true);
         await axios.get(`http://localhost:5000/request/all-request/${localStorage.getItem("mess_id")}`)
             .then((data)=>{
-                toast.error(data.data)
-                setBazarlist(data.data.data.bazarList)
-                setDsposit(data.data.data.deposit)
-                setMealList(data.data.data.mealList)
-                setLoading(false);
+                if(data.data.status==404){
+                    toast.error(data.data.msg);
+                }else{
+                    toast.success(data.data.msg);
+                    setBazarlist(data.data.data.bazarList)
+                    setDsposit(data.data.data.deposit)
+                    setMealList(data.data.data.mealList)
+                    setLoading(false);
+                }
             })
             .catch((err)=>{
-                toast.error("Something Went worng")
+                toast.error(err.response.data.msg[0])
             })
 }
 
@@ -63,11 +67,15 @@ const getRequestData=async ()=>{
             item_name
         })
             .then(res=>{
-                toast.error(res.data)
                 setShow(false);
+               if(res.data.success){
+                   toast.success(res.data.msg);
+               }else if(! res.data.success){
+                   toast.error(res.data.msg)
+               }
             })
             .catch(err=>{
-               toast.error("Somethong Error")
+              toast.error(err.response.data.msg[0]);
             })
     }
 
@@ -79,12 +87,17 @@ const getRequestData=async ()=>{
               if(data.data.deletedCount==1){
                   let filterBazarList=bazarlist.filter(el=>el._id!=id)
                   setBazarlist(filterBazarList);
+                  if(data.data.success){
+                      toast.success(data.data.msg);
+                  }else if(! data.data.success){
+                      toast.error(data.data.msg)
+                  }
               }else{
-                toast.error("Something Went worng")
+                  toast.error(data.data.msg)
               }
           })
           .catch((err)=>{
-              toast.error("Something Went worng")
+              toast.error(err.response.data.msg[0])
           })
     }
 
@@ -103,10 +116,14 @@ const getRequestData=async ()=>{
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }})
             .then(res=>{
-                toast.error(data.data)
+                if(res.data.success){
+                    toast.error(res.data.msg);
+                }else if(! res.data.msg){
+                    toast.error(res.data.msg)
+                }
             })
             .catch(err=>{
-                toast.error("Something Went Worng")
+                toast.error(err.response.data.msg[0])
             })
     }
     //Delete Deposit List
@@ -116,12 +133,17 @@ const getRequestData=async ()=>{
                 if(data.data.deletedCount==1){
                     let filterDepositList=deposit.filter(el=>el._id!=id)
                     setDsposit(filterDepositList);
+                    if(data.data.success){
+                        toast.success(data.data.msg);
+                    }else if(! data.data.success){
+                        toast.error(data.data.msg)
+                    }
                 }else {
-                    toast.error("Something Went Worng")
+                    toast.error(data.data.msg)
                 }
             })
             .catch((err)=>{
-                toast.error("Something Went Worng")
+                toast.error(err.response.data.msg[0]);
             })
     }
 
@@ -133,12 +155,17 @@ const getRequestData=async ()=>{
               if(data.data.deletedCount==1){
                   let filterMeal = mealList.filter(el=>el._id!=id)
                 setMealList(filterMeal);
-              }else{
-                  toast.error("Something Went Worng");
+                  if(data.data.success){
+                      toast.success(data.data.msg);
+                  }else if(! data.data.success){
+                      toast.error(data.data.msg)
+                  }
+              }else {
+                  toast.error(data.data.msg)
               }
           })
-          .catch((error)=>{
-              toast.error("Something Went Worng");
+          .catch((err)=>{
+              toast.error(err.response.data.msg[0]);
           })
     }
 

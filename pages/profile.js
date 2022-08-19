@@ -24,11 +24,16 @@ const Profile=()=>{
     const getMemberList=async()=>{
         await axios.get("http://localhost:5000/member")
             .then((data)=>{
-              toast.error(data.data)
-                setProfileUser(data.data);
+
+                if (data.data.status==404){
+                    toast.error(data.data.msg);
+                }else{
+                    toast.success(data.data.msg)
+                    setProfileUser(data.data);
+                }
             })
             .catch((err)=>{
-                toast.error("Something Went Wrong")
+                toast.error(err.response.data.msg[0]);
             })
     }
 

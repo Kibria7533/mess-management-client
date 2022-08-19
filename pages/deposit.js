@@ -31,11 +31,17 @@ const Deposit=()=>{
    const getDeposit=async()=>{
     await axios.get("http://localhost:5000/deposit")
         .then((data)=>{
-            toast.error(data.data)
-            setdepositlist(data.data);
+
+            if(data.data.status==404){
+                toast.error(data.data.msg);
+
+            }else{
+                toast.success(data.data.msg);
+                setdepositlist(data.data);
+            }
         })
         .catch((err)=>{
-          toast.error("Something Went Wrong")
+            toast.error(err.response.data.message[0]);
        })
     }
     const Save=async ()=>{
@@ -49,8 +55,14 @@ const Deposit=()=>{
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }})
             .then((data)=>{
-                toast.error(data.data)
-                setShow(false);
+                if(data.data.status==404){
+                    toast.error(data.data.msg)
+                }else if(! data.data.success){
+                    toast.success(data.data.msg)
+                    setShow(false);
+                }
+            }).catch(err=>{
+                toast.error(err.response.data.message[0]);
             })
     }
 

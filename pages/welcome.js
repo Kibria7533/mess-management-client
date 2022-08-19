@@ -32,6 +32,8 @@ const [mess_id,setMessId]=useState('');
                         query: { mess_id: data.data.mess_id }
                     });
                 }
+            }).catch(err=>{
+                toast.error(err.response.data.msg[0]);
             })
     }
     return (

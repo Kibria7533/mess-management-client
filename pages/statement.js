@@ -32,11 +32,15 @@ const Statement = () => {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }})
                 .then((data)=>{
-                    toast.error(data.data)
                     // setMealReportList(data.data);
+                 if (data.data.success){
+                     toast.success(data.data.msg)
+                 }else if(! data.data.success){
+                     toast.error(data.data.msg);
+                 }
                 })
                 .catch((err)=>{
-                  toast.error("Something Went Wrong")
+                  toast.error(err.response.data.msg[0])
                 })
         }
 
