@@ -6,6 +6,12 @@ import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Router from 'next/router'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
+
+
+
 
 const Signup=()=>{
     const [name,setName]=useState("");
@@ -13,6 +19,8 @@ const Signup=()=>{
     const [phone_no, setPhone_no]=useState("");
     const [address, setAddress]=useState("");
     const [password, setPassword] =useState("");
+
+    const [loading,setLoading]=useState(false);
 
     useEffect(()=>{
         if(localStorage.getItem('access_token')){
@@ -54,141 +62,143 @@ const Signup=()=>{
 
     return(
 
+
             <main className="container">
-                <div className="row">
-                    <form className="form-horizontal" onSubmit={Save}>
-                        <fieldset>
-                            {/* Form Name */}
-                            <legend  className={styleSignup.legend}>Sign Up </legend>
-                            {/* Text input*/}
-                            <div className="control-group">
-                                <label className={styleSignup.label} >
-                                    User Name
-                                </label>
-                                <div className="controls">
-                                    <input
-                                        id="name"
-                                        name="name"
-                                        placeholder="Enter your user name"
-                                        className={styleSignup.inputs}
-                                        type="text"
-                                        onChange={(e)=>{
-                                            setName(e.target.value);
-                                        }}
-                                    />
+                {!loading ?
+                    <div className="row">
+                        <form className="form-horizontal" onSubmit={Save}>
+                            <fieldset>
+                                {/* Form Name */}
+                                <legend className={styleSignup.legend}>Sign Up</legend>
+                                {/* Text input*/}
+                                <div className="control-group">
+                                    <label className={styleSignup.label}>
+                                        User Name
+                                    </label>
+                                    <div className="controls">
+                                        <input
+                                            id="name"
+                                            name="name"
+                                            placeholder="Enter your user name"
+                                            className={styleSignup.inputs}
+                                            type="text"
+                                            onChange={(e) => {
+                                                setName(e.target.value);
+                                            }}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="control-group">
-                                <label className={styleSignup.label} >
-                                    Email
-                                </label>
-                                <div className="controls">
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        placeholder="Enter your email"
-                                        className={styleSignup.inputs}
-                                        type="email"
-                                        onChange={(e)=>{
-                                            setEmail(e.target.value);
-                                        }}
-                                    />
+                                <div className="control-group">
+                                    <label className={styleSignup.label}>
+                                        Email
+                                    </label>
+                                    <div className="controls">
+                                        <input
+                                            id="email"
+                                            name="email"
+                                            placeholder="Enter your email"
+                                            className={styleSignup.inputs}
+                                            type="email"
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                            }}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            {/* Text input*/}
-                            <div >
-                                <label className={styleSignup.label}>
-                                    Phone Number
-                                </label>
-                                <div className="controls">
-                                    <input
-                                        id="phone_number"
-                                        name="phone_number"
-                                        placeholder=" Enter your phone number"
-                                        className={styleSignup.inputs}
-                                        type="tel"
-                                        onChange={(e)=>{
-                                            setPhone_no(e.target.value);
-                                        }}
-                                    />
+                                {/* Text input*/}
+                                <div>
+                                    <label className={styleSignup.label}>
+                                        Phone Number
+                                    </label>
+                                    <div className="controls">
+                                        <input
+                                            id="phone_number"
+                                            name="phone_number"
+                                            placeholder=" Enter your phone number"
+                                            className={styleSignup.inputs}
+                                            type="tel"
+                                            onChange={(e) => {
+                                                setPhone_no(e.target.value);
+                                            }}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            {/* Text input*/}
-                            <div className="control-group">
-                                <label className={styleSignup.label} >
-                                    Address
-                                </label>
-                                <div className="controls">
-                                    <input
-                                        id="address"
-                                        name="address"
-                                        placeholder=" Enter your address"
-                                        className={styleSignup.inputs}
-                                        type="text"
-                                        onChange={(e)=>{
-                                            setAddress(e.target.value)
-                                        }}
-                                    />
+                                {/* Text input*/}
+                                <div className="control-group">
+                                    <label className={styleSignup.label}>
+                                        Address
+                                    </label>
+                                    <div className="controls">
+                                        <input
+                                            id="address"
+                                            name="address"
+                                            placeholder=" Enter your address"
+                                            className={styleSignup.inputs}
+                                            type="text"
+                                            onChange={(e) => {
+                                                setAddress(e.target.value)
+                                            }}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Text input*/}
-                            <div className="control-group">
-                                <label className={styleSignup.label} >
-                                    Password
-                                </label>
-                                <div className="controls">
-                                    <input
-                                        id="password"
-                                        name="password"
-                                        placeholder="Enter your Password"
-                                        className={styleSignup.inputs}
-                                        type="text"
-                                        onChange={(e)=>{
-                                            setPassword(e.target.value)
-                                        }}
+                                {/* Text input*/}
+                                <div className="control-group">
+                                    <label className={styleSignup.label}>
+                                        Password
+                                    </label>
+                                    <div className="controls">
+                                        <input
+                                            id="password"
+                                            name="password"
+                                            placeholder="Enter your Password"
+                                            className={styleSignup.inputs}
+                                            type="text"
+                                            onChange={(e) => {
+                                                setPassword(e.target.value)
+                                            }}
 
-                                    />
+                                        />
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Button */}
+                                {/* Button */}
 
-                            <label className="control-label"/>
-                            <div className="controls">
-                                    <button type={'submit'} className={styleSignup.button}  >
+                                <label className="control-label"/>
+                                <div className="controls">
+                                    <button type={'submit'} className={styleSignup.button}>
                                         SignUp
                                     </button>
-                                <ToastContainer
-                                    position="top-right"
-                                    autoClose={5000}
-                                    hideProgressBar={false}
-                                    newestOnTop={false}
-                                    closeOnClick
-                                    rtl={false}
-                                    pauseOnFocusLoss
-                                    draggable
-                                    pauseOnHover
-                                />
-                                {/* Same as */}
-                                <ToastContainer />
+                                    <ToastContainer
+                                        position="top-right"
+                                        autoClose={5000}
+                                        hideProgressBar={false}
+                                        newestOnTop={false}
+                                        closeOnClick
+                                        rtl={false}
+                                        pauseOnFocusLoss
+                                        draggable
+                                        pauseOnHover
+                                    />
+                                    {/* Same as */}
+                                    <ToastContainer/>
 
-                            </div>
+                                </div>
 
 
+                            </fieldset>
+                        </form>
+                        <label className="control-label"/>
+                        <div className="controls">
+                            <Link href={'/signin'}>
+                                <button className={styleSignup.button}>
+                                    SignIn
+                                </button>
+                            </Link>
 
-                        </fieldset>
-                    </form>
-                    <label className="control-label"/>
-                    <div className="controls">
-                        <Link href={'/signin'} >
-                            <button className={styleSignup.button}>
-                                SignIn
-                            </button>
-                        </Link>
-
-                    </div>
-                </div>
+                        </div>
+                    </div> : <Skeleton/>
+                }
             </main>
     )
 }

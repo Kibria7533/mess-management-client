@@ -1,3 +1,42 @@
 .creat_mess {
-    margin-bottom: 12px;
+    /*margin-bottom: 12px;*/
+
+}
+
+.container {
+    padding: 0 2rem;
+}
+
+.main {
+    min-height: 75vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input_label{
+    margin-bottom: 0.8rem;
+    font-size: 2rem;
+    font-weight: 400;
+}
+.input{
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 0.3rem ;
+    border: 1px solid #0D6EFD;
+}
+
+
+.button_back{
+    margin-right: 0.5rem;
+}
+.button_back:hover{
+    transition: all 0.5s ease-in-out;
+}
+.button_create:hover{
+    transition: all 0.5s ease-in-out;
 }

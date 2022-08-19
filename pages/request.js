@@ -42,7 +42,7 @@ const getRequestData=async ()=>{
         setLoading(true);
         await axios.get(`http://localhost:5000/request/all-request/${localStorage.getItem("mess_id")}`)
             .then((data)=>{
-
+                toast.error(data.data)
                 setBazarlist(data.data.data.bazarList)
                 setDsposit(data.data.data.deposit)
                 setMealList(data.data.data.mealList)
@@ -63,11 +63,11 @@ const getRequestData=async ()=>{
             item_name
         })
             .then(res=>{
-                console.log(res.data)
+                toast.error(res.data)
                 setShow(false);
             })
             .catch(err=>{
-                console.log(err)
+               toast.error("Somethong Error")
             })
     }
 
@@ -103,10 +103,10 @@ const getRequestData=async ()=>{
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }})
             .then(res=>{
-                console.log(res.data)
+                toast.error(data.data)
             })
             .catch(err=>{
-                console.log(err)
+                toast.error("Something Went Worng")
             })
     }
     //Delete Deposit List
@@ -129,7 +129,7 @@ const getRequestData=async ()=>{
     const deleteMealEntry = async (id) => {
       await axios.delete(`http://localhost:5000/meal-entry/${id}`)
           .then((data)=>{
-              console.log(data)
+             toast.error(data.data)
               if(data.data.deletedCount==1){
                   let filterMeal = mealList.filter(el=>el._id!=id)
                 setMealList(filterMeal);
@@ -170,7 +170,7 @@ const getRequestData=async ()=>{
                                     </td>
                                     <td scope="col">
                                         <button className='btn btn-warning' onClick={()=>acceptMethod(req._id,"BazarList",req)}>Accept</button>
-                                        / <button className='btn btn-danger' onClick={()=>deleteBazaList()} >Delete</button>
+                                        / <button className='btn btn-danger' onClick={()=>{deleteBazaList(req._id)}} >Delete</button>
 
                                     </td>
                                 </tr>

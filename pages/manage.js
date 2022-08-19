@@ -1,11 +1,20 @@
 import Layout from "../components/Layout";
 import Styles from '../styles/manage.module.css';
 import Link from "next/link";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import {useState} from "react";
+
+
 const Manage=()=>{
+
+
+    const [loading,setLoading]=useState(false);
+
 
     return(
         <Layout>
-
+            {!loading ?
                 <div className={Styles.dailymeal}>
                     <div className="row">
 
@@ -17,9 +26,11 @@ const Manage=()=>{
                         <div className={`${Styles.dailyMealCalc} col-md-4`}>Dinner<p className='noOfMeal'>0</p>
                         </div>
                     </div>
-                    </div>
+                </div> : <Skeleton/>
+            }
 
                     {/* cards */}
+            {!loading ?
                 <div className={`mt-10`}>
                     <div className="row">
                         <div className={`col-md-4 mb-10`}>
@@ -78,15 +89,16 @@ const Manage=()=>{
                         </div>
 
 
-                    <div className={`col-md-4 mb-10`}>
-                        <Link href={'/meal-report'}>
-                            <div className={`card ${Styles.cardBg}`}>
-                            <div className="card-body">
-                                meal-report
-                            </div>
-                        </div></Link>
+                        <div className={`col-md-4 mb-10`}>
+                            <Link href={'/meal-report'}>
+                                <div className={`card ${Styles.cardBg}`}>
+                                    <div className="card-body">
+                                        meal-report
+                                    </div>
+                                </div>
+                            </Link>
 
-                    </div>
+                        </div>
 
                         <div className={`col-md-4 mb-10`}>
                             <Link href={'/meal-entry'}>
@@ -108,8 +120,9 @@ const Manage=()=>{
                             </Link>
                         </div>
 
-                </div>
-                </div>
+                    </div>
+                </div> : <Skeleton/>
+            }
 
         </Layout>
 
