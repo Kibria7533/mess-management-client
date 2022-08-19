@@ -14,7 +14,7 @@ import {BsMoonStarsFill} from "react-icons/bs";
 
 const Profile=()=>{
 
-    const [profileUser,setProfileUser]=useState([]);
+    const [profileUser,setProfileUser]=useState({});
     const [loading,setLoading]=useState(false);
 
 
@@ -22,9 +22,11 @@ const Profile=()=>{
         getMemberList();
     },[])
     const getMemberList=async()=>{
-        await axios.get("http://localhost:5000/member")
+        await axios.get("http://localhost:5000/member/profile",{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }})
             .then((data)=>{
-              toast.error(data.data)
                 setProfileUser(data.data);
             })
             .catch((err)=>{
@@ -110,21 +112,18 @@ const Profile=()=>{
                                     >
 
 
-                                        {profileUser.length>0 && profileUser.map((user,idx)=>{
-                                            return(
-                                                <div key={idx}>
-                                                    <h3>Name  : {user.name}</h3>
-                                                    <hr/>
-                                                    <h3>Email: {user.email}</h3>
-                                                    <hr/>
-                                                    <h3>Phone no : {user.phone_no}</h3>
-                                                    <hr/>
-                                                    <h3> Address : {user.address}</h3>
 
+                                                <div>
+                                                    <h3>Name  : {profileUser.name}</h3>
+                                                    <hr/>
+                                                    <h3>Email: {profileUser.email}</h3>
+                                                    <hr/>
+                                                    <h3>Phone no : {profileUser.phone_no}</h3>
+                                                    <hr/>
+                                                    <h3> Address : {profileUser.address}</h3>
 
                                                 </div>
-                                            )
-                                        })}
+
 
 
                                     </form>
