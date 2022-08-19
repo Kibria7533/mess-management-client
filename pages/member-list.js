@@ -43,8 +43,8 @@ const MemberList=()=>{
                     setMemberList(data.data)
                 }
             })
-            .catch((err)=>{
-               toast.error(err.response.data.msg[0]);
+            .catch(err=>{
+                toast.error(err.response.data.message[0]);
             })
     }
     const Save=async ()=>{
@@ -61,8 +61,8 @@ const MemberList=()=>{
                }else if(! data.data.success){
                    toast.error(data.data.msg);
                }
-            }).catch(err=>{
-                toast.error(err.response.data.msg[0]);
+            }) .catch(err=>{
+                toast.error(err.response.data.message[0]);
             })
     }
 

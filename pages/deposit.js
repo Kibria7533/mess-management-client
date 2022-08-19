@@ -45,6 +45,11 @@ const Deposit=()=>{
        })
     }
     const Save=async ()=>{
+
+        if(!date || !name || !amount ){
+            toast.error('Please fill the form')
+            return;
+        }
         await axios.post("http://localhost:5000/deposit",{
             date,
             name,
@@ -57,7 +62,7 @@ const Deposit=()=>{
             .then((data)=>{
                 if(data.data.status==404){
                     toast.error(data.data.msg)
-                }else if(! data.data.success){
+                }else{
                     toast.success(data.data.msg)
                     setShow(false);
                 }

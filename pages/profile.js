@@ -31,10 +31,9 @@ const Profile=()=>{
                     toast.success(data.data.msg)
                     setProfileUser(data.data);
                 }
-            })
-            .catch((err)=>{
-                toast.error(err.response.data.msg[0]);
-            })
+            }).catch(err=>{
+            toast.error(err.response.data)
+        })
     }
 
 

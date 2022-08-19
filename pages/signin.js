@@ -17,6 +17,10 @@ import Skeleton from "react-loading-skeleton";
 
      const Save=async (e)=>{
          e.preventDefault();
+         if(!username || !password){
+             toast.error('Please fill the form')
+             return;
+         }
          await axios.post("http://localhost:5000/auth/login",{
              username,
              password

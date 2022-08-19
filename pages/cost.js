@@ -30,6 +30,11 @@ const Cost = () => {
 
     //cost data save post route
     const Save=async()=>{
+        if( !cost || !item_name ){
+            toast.error('Please fill the form')
+            return;
+        }
+
         await axios.post("http://localhost:5000/bazar-list",{
             date,
             cost,
