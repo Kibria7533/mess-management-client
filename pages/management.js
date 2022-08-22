@@ -19,34 +19,109 @@ const Management=()=>{
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [bazarShow, setBazarShow] = useState(false);
+    const bazarHandleClose = () => setBazarShow(false);
+    const bazarHandleShow = () => setBazarShow(true);
+
+    const [loading,setLoading]=useState(false);
     //Bazar list UseState
     const [date,setDate]=useState(" ")
     const [cost, setCost]=useState(" ");
     const [item_name, setItem_name]=useState(" ");
+    const [bazarid,setbazarId]=useState(" ")
 
-    const [loading,setLoading]=useState(false);
+    //Deposit List UseState
+    const [name, setName]=useState("");
+    const [amount, setAmount]=useState(0);
+
+    //update MealEntry useState
+    const [break_fast,setBreak_fast]=useState(0);
+    const [lunch,setLunch]=useState(0);
+    const [dinner,setDinner]=useState(0);
+
     //Update bazar-list..........
 
-    const updateBazaList=async (id)=>{
+   const setupdate=(cost)=>{
+       setbazarId(cost._id)
+       setCost(cost.cost);
+       setItem_name(cost.item_name);
+       setBazarShow(true);
+    }
+    const updateBazar=async (id)=>{
+       console.log(id)
         await axios.patch(`http://localhost:5000/bazar-list/${id}`, {
             date,
             cost,
             item_name
-        })
-            .then(res=>{
-                setShow(false);
-                if(res.data.success){
-                    toast.success(res.data.msg);
-                }else if(! res.data.success){
-                    toast.error(res.data.msg)
+        },{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }})
+            .then((data)=>{
+                if(data.data.status==404){
+                    toast.error(data.data.msg)
+                }else{
+                    toast.success(data.data.msg);
+                    setBazarShow(false);
                 }
             })
             .catch(err=>{
                 toast.error(err.response.data);
             })
     }
+//Update Deposit
+    const updateDeposit=async (id)=>{
+
+        if(!date || !name || !amount ){
+            toast.error('Please fill the form')
+            return;
+        }
+        await axios.post(`http://localhost:5000/deposit/${id}`,{
+            date,
+            name,
+            amount,
+            mess_id: localStorage.getItem("mess_id")
+        },{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }})
+            .then((data)=>{
+                if(data.data.status==404){
+                    toast.error(data.data.msg)
+                }else{
+                    toast.success(data.data.msg)
+                    BazarhandleShow(false);
+                }
+            }).catch(err=>{
+                toast.error(err.response.data);
+            })
+    }
 
 
+//Update Meal ............
+
+    const updateMealEntry=async ()=>{
+        axios.patch(`http://localhost:5000/meal-entry/${id}`,{
+            date,
+            break_fast,
+            lunch,
+            dinner,
+        },{headers: {'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }})
+            .then((data)=>{
+
+                if(data.data.status==404){
+                    toast.error(data.data.msg);
+                }else{
+                    toast.success(data.data.msg)
+
+                }
+            }).catch(err=>{
+            toast.error(err.response.data);
+        })
+    }
 
     const [costData,setCostdata]=useState([ ])
     useEffect(()=>{
@@ -97,7 +172,6 @@ const Management=()=>{
 const getMealEntry=async ()=>{
         await axios.get("http://localhost:5000/meal-entry")
             .then((data)=>{
-                console.log(data.data)
                 if(data.data.status==404){
                     toast.error(data.data.msg);
 
@@ -109,7 +183,39 @@ const getMealEntry=async ()=>{
             .catch((err)=>{
                 toast.error(err.response.data);
             })
-}
+    }
+    const[member,setMember]=useState([])
+
+    //Member List Get data
+    useEffect(()=>{
+        memberList();
+    },[])
+    const memberList=async ()=>{
+        await axios.get('http://localhost:5000/member/',{
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }
+        })
+            .then((data)=>{
+                if (data.data.status==404){
+                    toast.error(data.data.msg);
+                }else{
+                    toast.success(data.data.msg)
+                    setMember(data.data);
+                }
+            }).catch(err=>{
+                toast.error(err.response.data)
+            })
+    }
+    //Delete Member
+    const deleteMember=async (id)=>{
+        console.log(id);
+        await axios.delete('')
+
+    }
+
     return(
         <Layout>
             <div className={stylemanagement.table_contaier}>
@@ -121,7 +227,7 @@ const getMealEntry=async ()=>{
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">Name</th>
+                                <th scope="col"> Item name</th>
                                 <th scope="col">Cost</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -135,7 +241,7 @@ const getMealEntry=async ()=>{
                                         <td>{cost.item_name}</td>
                                         <td>{cost.cost}</td>
                                         <td>
-                                            <Button className="btn btn-warning" variant="primary"  onClick={handleShow} >Edit</Button>
+                                            <Button className="btn btn-warning" variant="warning" onClick={()=>setupdate(cost)}>Edit</Button>
                                         </td>
                                     </tr>
                                 )
@@ -148,9 +254,9 @@ const getMealEntry=async ()=>{
 
                 {/*Modal*/}
                 {!loading ?
-                    <Modal show={show} onHide={handleClose}>
+                    <Modal show={bazarShow} onHide={bazarHandleShow}>
                         <Modal.Header closeButton>
-                            <Modal.Title> Update Deposit</Modal.Title>
+                            <Modal.Title> Update BazarList</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <Form>
@@ -171,6 +277,8 @@ const getMealEntry=async ()=>{
                                         type="text"
                                         placeholder="Enter cost"
                                         autoFocus
+                                        value={cost}
+
                                         onChange={(e)=>{
                                             setCost(e.target.value)
                                         }}
@@ -183,6 +291,7 @@ const getMealEntry=async ()=>{
                                         type="text"
                                         placeholder="Enter item name"
                                         autoFocus
+                                        value={item_name}
                                         onChange={(e)=>{
                                             setItem_name(e.target.value)
                                         }}
@@ -191,12 +300,13 @@ const getMealEntry=async ()=>{
                             </Form>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
+                            <Button variant="secondary" onClick={bazarHandleClose}>
                                 Close
                             </Button>
-                            <Button variant="primary" onClick={()=>Save()}>
-                                Update
-                            </Button>
+                                    <Button variant="primary" onClick={()=>updateBazar(bazarid)}>
+                                        Update
+                                    </Button>
+
                         </Modal.Footer>
                     </Modal>:<Skeleton/>
                 }
@@ -283,7 +393,7 @@ const getMealEntry=async ()=>{
                             <Button variant="secondary" onClick={handleClose}>
                                 Close
                             </Button>
-                            <Button variant="primary" onClick={() => Save()}>
+                            <Button variant="primary" >
                                 Update
                             </Button>
                         </Modal.Footer>
@@ -320,7 +430,7 @@ const getMealEntry=async ()=>{
                                     <td>{meal.dinner}</td>
                                     <td>{meal.lunch}</td>
                                     <td scope="col">
-                                        <button className='btn btn-warning' >Edit</button>
+                                        <td><button className='btn btn-warning' onClick={handleShow} >Edit</button></td>
                                     </td>
                                 </tr>
                             )
@@ -329,6 +439,87 @@ const getMealEntry=async ()=>{
                     </table>
                 </div> : <Skeleton/>
                 }
+
+
+                {/*Modal*/}
+                {!loading ?
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title> Update Meal Entry </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Date</Form.Label>
+                                    <Form.Control
+                                        type="Date"
+                                        placeholder="Enter date"
+                                        autoFocus
+                                        onChange={(e)=>{
+                                            setDate(e.target.value)
+                                        }}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Name</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter Name"
+                                        autoFocus
+                                        onChange={(e)=>{
+                                            setName(e.target.value)
+                                        }}
+                                    />
+                                </Form.Group>
+
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Break Fast</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter item name"
+                                        autoFocus
+                                        onChange={(e)=>{
+                                            setBreakFast(e.target.value)
+                                        }}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Lunch</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter lunch"
+                                        autoFocus
+                                        onChange={(e)=>{
+                                            setLunch(e.target.value)
+                                        }}
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Dinner</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter your dinner"
+                                        autoFocus
+                                        onChange={(e)=>{
+                                            setDinner(e.target.value)
+                                        }}
+                                    />
+                                </Form.Group>
+                            </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" >
+                                Update
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>:<Skeleton/>
+                }
+
+
+
 
 
                 {/*Meal Entry Modal */}
@@ -341,11 +532,25 @@ const getMealEntry=async ()=>{
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Add Date</th>
                                 <th scope="col">Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
+                            {member.length>0 && member.map((member,idx)=>{
+                                return(
+                                    <tr key={idx}>
+                                        <td>{idx+1}</td>
+                                        <td>{member.name}</td>
+                                        <td>{member.email}</td>
+                                        <td>{member.phone_no}</td>
+                                        <td><button className='btn btn-danger' onClick={()=>{deleteMember(member._id)}}>Delete</button></td>
+
+                                    </tr>
+                                )
+                            })}
 
                             </tbody>
                         </table>

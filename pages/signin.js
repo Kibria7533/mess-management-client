@@ -35,7 +35,10 @@ import Skeleton from "react-loading-skeleton";
                      Router.push('/welcome')
                  }
              }).catch(err=>{
-                 toast.error(err.response.data.msg)
+                 if(err.response){
+                     toast.error(err.response.msg)
+                 }
+
              })
      }
 
@@ -78,7 +81,7 @@ import Skeleton from "react-loading-skeleton";
                                              name="password"
                                              placeholder="Enter your Password"
                                              className={styleSignup.inputs}
-                                             type="text"
+                                             type="password"
                                              onChange={(e) => {
                                                  setPassword(e.target.value)
                                              }}

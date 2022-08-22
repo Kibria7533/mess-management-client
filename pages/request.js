@@ -224,10 +224,6 @@ const getRequestData=async ()=>{
 
 
 
-
-
-
-
                 {/*Meal Entry List*/}
                 {!loading ? <div className="table-responsive">
                     <h2> Meal Entry List</h2>
@@ -268,9 +264,6 @@ const getRequestData=async ()=>{
                     </table>
                 </div> : <Skeleton/>
                 }
-
-
-
             </div>
 
         </Layout>

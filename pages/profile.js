@@ -23,7 +23,7 @@ const Profile=()=>{
         const files = e.target.files
         const formData = new FormData()
         formData.append('file', files[0])
-        await axios.post('http://localhost:5001/upload/profile-image',formData, {
+        await axios.post('http://localhost:5000/upload/profile-image',formData, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -43,20 +43,14 @@ const Profile=()=>{
             })
     }
 
-
-
-
-
-
     const [profileUser,setProfileUser]=useState({});
     const [loading,setLoading]=useState(false);
-
 
     useEffect(()=>{
         getMemberList();
     },[])
     const getMemberList=async()=>{
-        await axios.get("http://localhost:5001/member/profile",
+        await axios.get("http://localhost:5000/member/profile",
             {
                 headers: {
                     'Accept': 'application/json',
