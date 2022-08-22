@@ -9,12 +9,46 @@ import {AiFillStar, AiOutlineRight} from "react-icons/ai";
 import profileStyle from '../styles/profile.module.css';
 import stylemanagement from "../styles/management.module.css";
 import {BsMoonStarsFill} from "react-icons/bs";
+import Router from "next/router";
 
 
 
 const Profile=()=>{
 
-    const [profileUser,setProfileUser]=useState([]);
+    const[ imageUploadfile,setImageUploadfile]=useState([])
+
+    const saveImage=async (e)=> {
+        console.log("erfgergege",e.target.files)
+        e.preventDefault();
+        const files = e.target.files
+        const formData = new FormData()
+        formData.append('file', files[0])
+        await axios.post('http://localhost:5001/upload/profile-image',formData, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }
+        })
+            .then((data) => {
+                console.log("fdf",data)
+                if (data.data.status == 404) {
+                    toast.error(data.data.msg)
+                } else {
+                    toast.success(data.data.msg);
+                }
+            })
+            .catch(err => {
+                toast.error(err.response.data.message[0]);
+            })
+    }
+
+
+
+
+
+
+    const [profileUser,setProfileUser]=useState({});
     const [loading,setLoading]=useState(false);
 
 
@@ -22,9 +56,16 @@ const Profile=()=>{
         getMemberList();
     },[])
     const getMemberList=async()=>{
-        await axios.get("http://localhost:5000/member")
+        await axios.get("http://localhost:5001/member/profile",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }}
+            )
             .then((data)=>{
-
+                console.log(data)
                 if (data.data.status==404){
                     toast.error(data.data.msg);
                 }else{
@@ -52,6 +93,7 @@ const Profile=()=>{
                                     title="profile image"
                                     className="img-circle img-responsive"
                                     src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"
+
                                 />
                             </a>
                         </div>
@@ -61,12 +103,17 @@ const Profile=()=>{
                             {/*left col*/}
                             <div className="text-center">
                                 <img
-                                    src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                    src={`/home/rafi/Desktop/backend/meal-management/upload/${profileUser._id}`}
                                     className="avatar img-circle img-thumbnail"
                                     alt="avatar"
                                 />
                                 <h6>Upload a different photo...</h6>
-                                <input type="file" className="text-center center-block file-upload"/>
+                                <form onSubmit={saveImage}>
+                                    <input type="file" name="file" className="text-center center-block file-upload"
+
+                                    />
+                                    <button type="submit">submit</button>
+                                </form>
                             </div>
                             <br/>
                             <div>
@@ -114,21 +161,19 @@ const Profile=()=>{
                                     >
 
 
-                                        {profileUser.length>0 && profileUser.map((user,idx)=>{
-                                            return(
-                                                <div key={idx}>
-                                                    <h3>Name  : {user.name}</h3>
+
+
+                                                <div >
+                                                    <h3>Name  : {profileUser.name}</h3>
                                                     <hr/>
-                                                    <h3>Email: {user.email}</h3>
+                                                    <h3>Email: {profileUser.email}</h3>
                                                     <hr/>
-                                                    <h3>Phone no : {user.phone_no}</h3>
+                                                    <h3>Phone no : {profileUser.phone_no}</h3>
                                                     <hr/>
-                                                    <h3> Address : {user.address}</h3>
+                                                    <h3> Address : {profileUser.address}</h3>
 
 
                                                 </div>
-                                            )
-                                        })}
 
 
                                     </form>

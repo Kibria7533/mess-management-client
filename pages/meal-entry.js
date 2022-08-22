@@ -43,7 +43,7 @@ const MealEntry = () => {
           setMeal_of(0);
         }
       }).catch(err=>{
-        toast.error(err.response.data.msg[0]);
+        toast.error(err.response.data);
       })
 }
   return (

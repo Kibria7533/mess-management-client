@@ -56,7 +56,7 @@ const Cost = () => {
                 }
             })
             .catch(err=>{
-                toast.error(err.response.data.message[0]);
+                toast.error(err.response.data);
             })
     }
 
@@ -65,9 +65,9 @@ const Cost = () => {
 
     const [costData,setCostdata]=useState([ ])
     useEffect(()=>{
-        getDeposit();
+        getCost();
     },[])
-    const getDeposit=async()=>{
+    const getCost=async()=>{
         await axios.get("http://localhost:5000/bazar-list")
             .then((data)=>{
                 if(data.data.status==404){
@@ -78,7 +78,7 @@ const Cost = () => {
                 }
             })
             .catch((err)=>{
-                toast.error(err.response.data.message[0]);
+                toast.error(err.response.data);
             })
     }
 

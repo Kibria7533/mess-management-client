@@ -40,7 +40,7 @@ const Statement = () => {
                  }
                 })
                 .catch((err)=>{
-                  toast.error(err.response.data.msg[0])
+                  toast.error(err.response.data)
                 })
         }
 

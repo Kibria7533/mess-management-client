@@ -27,9 +27,10 @@ const Nav = () => {
                    layout="fill"
                    objectFit="contain"
                />
-           </Link>
-        </div>
 
+           </Link>
+
+        </div>
 
             <ul>
                 <li>

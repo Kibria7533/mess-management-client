@@ -13,7 +13,6 @@ import {error} from "next/dist/build/output/log";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-
 const Request=()=>{
 
     const [bazarlist,setBazarlist]=useState("")
@@ -22,15 +21,10 @@ const Request=()=>{
     const [loading,setLoading]=useState(false);
 
 
-
-
     //Bazar list UseState
     const [date,setDate]=useState(" ")
     const [cost, setCost]=useState(" ");
     const [item_name, setItem_name]=useState(" ");
-
-
-
 
     useEffect( ()=>{
         getRequestData()
@@ -53,31 +47,11 @@ const getRequestData=async ()=>{
                 }
             })
             .catch((err)=>{
-                toast.error(err.response.data.msg[0])
+                toast.error(err.response.data)
             })
 }
 
 
-    //Update bazar-list..........
-
-    const updateBazaList=async (id)=>{
-        await axios.patch(`http://localhost:5000/bazar-list/${id}`, {
-            date,
-            cost,
-            item_name
-        })
-            .then(res=>{
-                setShow(false);
-               if(res.data.success){
-                   toast.success(res.data.msg);
-               }else if(! res.data.success){
-                   toast.error(res.data.msg)
-               }
-            })
-            .catch(err=>{
-              toast.error(err.response.data.msg[0]);
-            })
-    }
 
 
     // delete bazar-list..........
@@ -97,7 +71,7 @@ const getRequestData=async ()=>{
               }
           })
           .catch((err)=>{
-              toast.error(err.response.data.msg[0])
+              toast.error(err.response.data)
           })
     }
 

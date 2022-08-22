@@ -44,7 +44,7 @@ const MemberList=()=>{
                 }
             })
             .catch(err=>{
-                toast.error(err.response.data.message[0]);
+                toast.error(err.response.data);
             })
     }
     const Save=async ()=>{

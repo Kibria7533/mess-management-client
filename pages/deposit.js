@@ -41,7 +41,7 @@ const Deposit=()=>{
             }
         })
         .catch((err)=>{
-            toast.error(err.response.data.message[0]);
+            toast.error(err.response.data);
        })
     }
     const Save=async ()=>{
@@ -67,7 +67,7 @@ const Deposit=()=>{
                     setShow(false);
                 }
             }).catch(err=>{
-                toast.error(err.response.data.message[0]);
+                toast.error(err.response.data);
             })
     }
 
