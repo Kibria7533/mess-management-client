@@ -19,7 +19,7 @@ const MealEntry = () => {
 
 
     const Save=async ()=>{
-  await axios.post("http://localhost:5000/meal-entry",{
+  await axios.post(`${process.env.NEXT_PUBLIC_HOST}/meal-entry`,{
     date,
     break_fast,
     lunch,

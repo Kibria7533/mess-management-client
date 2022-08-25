@@ -39,7 +39,7 @@ const Signup=()=>{
         }
 
 
-        await axios.post("http://localhost:5000/auth/signup",{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/auth/signup`,{
             name,
             email,
             phone_no,

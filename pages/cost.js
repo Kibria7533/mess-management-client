@@ -11,8 +11,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {toast} from "react-toastify";
 
 
-const Cost = () => {
 
+const Cost = () => {
     // Modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -34,8 +34,7 @@ const Cost = () => {
             toast.error('Please fill the form')
             return;
         }
-
-        await axios.post("http://localhost:5000/bazar-list",{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/bazar-list`,{
             date,
             cost,
             item_name,
@@ -43,13 +42,10 @@ const Cost = () => {
         },{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
-
             }})
             .then((data)=>{
-
                 if(data.data.status==404){
                     toast.error(data.data.msg)
-
                 }else{
                     toast.success(data.data.msg);
                     setShow(false);
@@ -68,7 +64,8 @@ const Cost = () => {
         getCost();
     },[])
     const getCost=async()=>{
-        await axios.get("http://localhost:5000/bazar-list")
+        console.log(process.env.NEXT_PUBLIC_HOST)
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/bazar-list`)
             .then((data)=>{
                 if(data.data.status==404){
                     toast.error(data.data.msg)

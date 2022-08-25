@@ -25,7 +25,7 @@ export default function createmess() {
             toast.error('Please fill the form')
             return;
         }
-        await axios.post("http://localhost:5000/mess", {
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/mess`, {
             mess_name,
             mess_id,
         }, {

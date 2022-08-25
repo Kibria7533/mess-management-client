@@ -33,7 +33,7 @@ const MemberList=()=>{
         getMemberList();
     })
     const getMemberList=async()=>{
-        await axios.get("http://localhost:5000/member")
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/meal-entrymember`)
             .then((data)=>{
               ;
                 if(data.data.status==404){
@@ -48,7 +48,7 @@ const MemberList=()=>{
             })
     }
     const Save=async ()=>{
-        await axios.post("http://localhost:5000/member",{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/member`,{
             date,
             name,
             amount,

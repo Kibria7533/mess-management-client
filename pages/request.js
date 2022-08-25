@@ -34,7 +34,7 @@ const Request=()=>{
 //Get BazarList Deposit and MealList Table
 const getRequestData=async ()=>{
         setLoading(true);
-        await axios.get(`http://localhost:5000/request/all-request/${localStorage.getItem("mess_id")}`)
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/request/all-request/${localStorage.getItem("mess_id")}`)
             .then((data)=>{
                 if(data.data.status==404){
                     toast.error(data.data.msg);
@@ -56,7 +56,7 @@ const getRequestData=async ()=>{
 
     // delete bazar-list..........
     const deleteBazaList=async (id)=>{
-      await axios.delete(`http://localhost:5000/bazar-list/${id}`)
+      await axios.delete(`${process.env.NEXT_PUBLIC_HOST}/bazar-list/${id}`)
           .then((data)=>{
               if(data.data.deletedCount==1){
                   let filterBazarList=bazarlist.filter(el=>el._id!=id)
@@ -78,7 +78,7 @@ const getRequestData=async ()=>{
 
     //u List
     const acceptMethod=async (id,requestType,data)=>{
-        await axios.post(`http://localhost:5000/request/accept`,{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/request/accept`,{
             id:id,
             type:requestType,
             data:{
@@ -102,7 +102,7 @@ const getRequestData=async ()=>{
     }
     //Delete Deposit List
     const deleteDepositList=async (id)=>{
-        await axios.delete(`http://localhost:5000/deposit/${id}`)
+        await axios.delete(`${process.env.NEXT_PUBLIC_HOST}/deposit/${id}`)
             .then((data)=>{
                 if(data.data.deletedCount==1){
                     let filterDepositList=deposit.filter(el=>el._id!=id)
@@ -123,7 +123,7 @@ const getRequestData=async ()=>{
 
     //DeleteMealEntry
     const deleteMealEntry = async (id) => {
-      await axios.delete(`http://localhost:5000/meal-entry/${id}`)
+      await axios.delete(`${process.env.NEXT_PUBLIC_HOST}/meal-entry/${id}`)
           .then((data)=>{
              toast.error(data.data)
               if(data.data.deletedCount==1){

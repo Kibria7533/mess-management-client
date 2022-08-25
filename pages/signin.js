@@ -21,7 +21,7 @@ import Skeleton from "react-loading-skeleton";
              toast.error('Please fill the form')
              return;
          }
-         await axios.post("http://localhost:5000/auth/login",{
+         await axios.post(`${process.env.NEXT_PUBLIC_HOST}/auth/login`,{
              username,
              password
          },{headers: {'Accept': 'application/json',

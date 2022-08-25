@@ -29,7 +29,7 @@ const Deposit=()=>{
         getDeposit();
     },[])
    const getDeposit=async()=>{
-    await axios.get("http://localhost:5000/deposit")
+    await axios.get(`${process.env.NEXT_PUBLIC_HOST}/deposit`)
         .then((data)=>{
 
             if(data.data.status==404){
@@ -50,7 +50,7 @@ const Deposit=()=>{
             toast.error('Please fill the form')
             return;
         }
-        await axios.post("http://localhost:5000/deposit",{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/deposit`,{
             date,
             name,
             amount,

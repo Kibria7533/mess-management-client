@@ -23,7 +23,7 @@ const Profile=()=>{
         const files = e.target.files
         const formData = new FormData()
         formData.append('file', files[0])
-        await axios.post('http://localhost:5000/upload/profile-image',formData, {
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/upload/profile-image`,formData, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const Profile=()=>{
         getMemberList();
     },[])
     const getMemberList=async()=>{
-        await axios.get("http://localhost:5000/member/profile",
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/member/profile`,
             {
                 headers: {
                     'Accept': 'application/json',

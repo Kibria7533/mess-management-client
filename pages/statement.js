@@ -27,7 +27,7 @@ const Statement = () => {
     },[])
 
         const getMonthlyStatement=async()=>{
-            await axios.get(`http://localhost:5000/monthly-statement/get-statement/${localStorage.getItem('mess_id')}`,{headers: {'Accept': 'application/json',
+            await axios.get(`${process.env.NEXT_PUBLIC_HOST}/monthly-statement/get-statement/${localStorage.getItem('mess_id')}`,{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }})
