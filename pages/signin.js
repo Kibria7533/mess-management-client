@@ -17,17 +17,28 @@ import Skeleton from "react-loading-skeleton";
 
      const Save=async (e)=>{
          e.preventDefault();
-         await axios.post("http://localhost:5000/auth/login",{
+         if(!username || !password){
+             toast.error('Please fill the form')
+             return;
+         }
+         await axios.post(`${process.env.NEXT_PUBLIC_HOST}/auth/login`,{
              username,
              password
          },{headers: {'Accept': 'application/json',
                  'Content-Type': 'application/json'}})
              .then((data)=>{
-                 toast.error(data.data)
-                 localStorage.setItem("access_token",data.data.access_token);
-                 Router.push('/welcome')
+                 if(data.data.status==404){
+                     toast.error(data.data.msg);
+                 }else{
+                     toast.success(data.data.msg);
+                     localStorage.setItem("access_token",data.data.access_token);
+                     Router.push('/welcome')
+                 }
              }).catch(err=>{
-                 toast.error('Wrong Credentials')
+                 if(err.response){
+                     toast.error(err.response.msg)
+                 }
+
              })
      }
 
@@ -70,7 +81,7 @@ import Skeleton from "react-loading-skeleton";
                                              name="password"
                                              placeholder="Enter your Password"
                                              className={styleSignup.inputs}
-                                             type="text"
+                                             type="password"
                                              onChange={(e) => {
                                                  setPassword(e.target.value)
                                              }}

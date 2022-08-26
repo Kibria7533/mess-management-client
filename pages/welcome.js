@@ -16,7 +16,7 @@ export default function Home() {
 const [mess_id,setMessId]=useState('');
     const [loading,setLoading]=useState(false);
     const Join=async ()=>{
-        await axios.post("http://localhost:5000/mess/join-mess",{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/mess/join-mess`,{
             mess_id
         },{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -32,6 +32,8 @@ const [mess_id,setMessId]=useState('');
                         query: { mess_id: data.data.mess_id }
                     });
                 }
+            }).catch(err=>{
+                toast.error(err.response.data.msg[0]);
             })
     }
     return (

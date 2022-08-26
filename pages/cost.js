@@ -11,8 +11,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {toast} from "react-toastify";
 
 
-const Cost = () => {
 
+const Cost = () => {
     // Modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -30,7 +30,11 @@ const Cost = () => {
 
     //cost data save post route
     const Save=async()=>{
-        await axios.post("http://localhost:5000/bazar-list",{
+        if( !cost || !item_name ){
+            toast.error('Please fill the form')
+            return;
+        }
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/bazar-list`,{
             date,
             cost,
             item_name,
@@ -38,14 +42,17 @@ const Cost = () => {
         },{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
-
             }})
             .then((data)=>{
-
-                setShow(false);
+                if(data.data.status==404){
+                    toast.error(data.data.msg)
+                }else{
+                    toast.success(data.data.msg);
+                    setShow(false);
+                }
             })
-            .catch((err)=>{
-                toast.error("Something Went Wrong")
+            .catch(err=>{
+                toast.error(err.response.data);
             })
     }
 
@@ -54,16 +61,21 @@ const Cost = () => {
 
     const [costData,setCostdata]=useState([ ])
     useEffect(()=>{
-        getDeposit();
+        getCost();
     },[])
-    const getDeposit=async()=>{
-        await axios.get("http://localhost:5000/bazar-list")
+    const getCost=async()=>{
+        console.log(process.env.NEXT_PUBLIC_HOST)
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/bazar-list`)
             .then((data)=>{
-               toast.error(data.data)
-                setCostdata(data.data)
+                if(data.data.status==404){
+                    toast.error(data.data.msg)
+                }else{
+                    toast.success(data.data.success);
+                    setCostdata(data.data);
+                }
             })
             .catch((err)=>{
-               toast.error("Something Went Wrong")
+                toast.error(err.response.data);
             })
     }
 
@@ -86,7 +98,7 @@ const Cost = () => {
                         <tbody>
                         {costData.length>0 && costData.map((cost,idx)=>{
                            return(
-                               <tr>
+                               <tr key={idx}>
                                    <td>{idx+1}</td>
                                    <td>{cost.createdAt}</td>
                                    <td>{cost.item_name}</td>

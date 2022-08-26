@@ -25,7 +25,7 @@ export default function createmess() {
             toast.error('Please fill the form')
             return;
         }
-        await axios.post("http://localhost:5000/mess", {
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/mess`, {
             mess_name,
             mess_id,
         }, {
@@ -38,10 +38,10 @@ export default function createmess() {
             .then((data) => {
                 if (data.data.success) {
                     toast.success(data.data.msg);
-                    Router.push({
-                        pathname: '/statement',
-                        query: { mess_id: data.data.mess_info.mess_id }
-                    });
+                     Router.push({
+                         pathname: '/statement',
+                         query: { mess_id: data.data.mess_info.mess_id }
+                     });
 
                 } else if (!data.data.success) {
                     toast.error(data.data.msg);

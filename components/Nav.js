@@ -2,7 +2,8 @@ import Link from 'next/link'
 import navStyles from '../styles/Nav.module.css'
 import Router from 'next/router'
 import {FaFortAwesomeAlt} from "react-icons/fa";
-
+import mealLogo from '../image/meal.logo.png'
+import Image from 'next/image'
 const Nav = () => {
 
     const logout=()=>{
@@ -17,16 +18,30 @@ const Nav = () => {
     }
     return (
         <nav className={navStyles.nav}>
+
+           <div className={navStyles.nav_logo}>
+           <Link href='/'>
+               <Image
+                   alt="Mess Meal Logo"
+                   src={mealLogo}
+                   layout="fill"
+                   objectFit="contain"
+               />
+
+           </Link>
+
+        </div>
+
             <ul>
                 <li>
                     <Link href='/statement'>Home</Link>
                 </li>
                 <li>
-                    <Link href='/profile'><button>Profile  <FaFortAwesomeAlt/></button></Link>
+                    <Link href='/profile'><button className={navStyles.nav_button}>Profile  <FaFortAwesomeAlt/></button></Link>
                 </li>
 
                 <li>
-                    <button  onClick={()=>logout()}>Logout</button>
+                    <button className={navStyles.nav_button}  onClick={()=>logout()}>Logout</button>
                 </li>
 
             </ul>

@@ -29,17 +29,28 @@ const Deposit=()=>{
         getDeposit();
     },[])
    const getDeposit=async()=>{
-    await axios.get("http://localhost:5000/deposit")
+    await axios.get(`${process.env.NEXT_PUBLIC_HOST}/deposit`)
         .then((data)=>{
-            toast.error(data.data)
-            setdepositlist(data.data);
+
+            if(data.data.status==404){
+                toast.error(data.data.msg);
+
+            }else{
+                toast.success(data.data.msg);
+                setdepositlist(data.data);
+            }
         })
         .catch((err)=>{
-          toast.error("Something Went Wrong")
+            toast.error(err.response.data);
        })
     }
     const Save=async ()=>{
-        await axios.post("http://localhost:5000/deposit",{
+
+        if(!date || !name || !amount ){
+            toast.error('Please fill the form')
+            return;
+        }
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/deposit`,{
             date,
             name,
             amount,
@@ -49,8 +60,14 @@ const Deposit=()=>{
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }})
             .then((data)=>{
-                toast.error(data.data)
-                setShow(false);
+                if(data.data.status==404){
+                    toast.error(data.data.msg)
+                }else{
+                    toast.success(data.data.msg)
+                    setShow(false);
+                }
+            }).catch(err=>{
+                toast.error(err.response.data);
             })
     }
 

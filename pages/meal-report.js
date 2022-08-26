@@ -29,10 +29,8 @@ const MealReport=()=>{
         getMealReportList();
     },[])
     const getMealReportList=async()=>{
-        await axios.get("http://localhost:5000/meal-entry")
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/meal-entry`)
             .then((data)=>{
-                toast.error(data.data)
-                console.log(data.data)
                 setMealReportList(data.data);
             })
             .catch((err)=>{

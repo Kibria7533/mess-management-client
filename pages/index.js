@@ -39,7 +39,7 @@ const Signup=()=>{
         }
 
 
-        await axios.post("http://localhost:5000/auth/signup",{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/auth/signup`,{
             name,
             email,
             phone_no,
@@ -51,12 +51,12 @@ const Signup=()=>{
                 if(data.data.status == 404)
                     toast.error(data.data.msg)
                 else if(data.data.status==201){
-                    toast.error(data.data.msg)
+                    toast.success(data.data.msg)
                       Router.push('/signin')
                 }
 
             }).catch(err=>{
-                toast.error("Something Wrong")
+                toast.error(err.response.data)
         })
     }
 

@@ -33,17 +33,22 @@ const MemberList=()=>{
         getMemberList();
     })
     const getMemberList=async()=>{
-        await axios.get("http://localhost:5000/member")
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/meal-entrymember`)
             .then((data)=>{
-                toast.error(data.data)
-                setMemberList(data.data);
+              ;
+                if(data.data.status==404){
+                    toast.error(data.data.msg);
+                }else{
+                    toast.success(data.data.msg);
+                    setMemberList(data.data)
+                }
             })
-            .catch((err)=>{
-               toast.error("Something Went Wrong")
+            .catch(err=>{
+                toast.error(err.response.data);
             })
     }
     const Save=async ()=>{
-        await axios.post("http://localhost:5000/member",{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/member`,{
             date,
             name,
             amount,
@@ -51,7 +56,13 @@ const MemberList=()=>{
         },{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json'}})
             .then((data)=>{
-                toast.error(data.data)
+               if(data.data.success){
+                   toast.success(data.data.msg)
+               }else if(! data.data.success){
+                   toast.error(data.data.msg);
+               }
+            }) .catch(err=>{
+                toast.error(err.response.data.message[0]);
             })
     }
 

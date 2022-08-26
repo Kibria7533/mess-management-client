@@ -27,16 +27,20 @@ const Statement = () => {
     },[])
 
         const getMonthlyStatement=async()=>{
-            await axios.get(`http://localhost:5000/monthly-statement/get-statement/${localStorage.getItem('mess_id')}`,{headers: {'Accept': 'application/json',
+            await axios.get(`${process.env.NEXT_PUBLIC_HOST}/monthly-statement/get-statement/${localStorage.getItem('mess_id')}`,{headers: {'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }})
                 .then((data)=>{
-                    toast.error(data.data)
                     // setMealReportList(data.data);
+                 if (data.data.success){
+                     toast.success(data.data.msg)
+                 }else if(! data.data.success){
+                     toast.error(data.data.msg);
+                 }
                 })
                 .catch((err)=>{
-                  toast.error("Something Went Wrong")
+                  toast.error(err.response.data)
                 })
         }
 

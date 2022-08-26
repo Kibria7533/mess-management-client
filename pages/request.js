@@ -13,7 +13,6 @@ import {error} from "next/dist/build/output/log";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-
 const Request=()=>{
 
     const [bazarlist,setBazarlist]=useState("")
@@ -22,15 +21,10 @@ const Request=()=>{
     const [loading,setLoading]=useState(false);
 
 
-
-
     //Bazar list UseState
     const [date,setDate]=useState(" ")
     const [cost, setCost]=useState(" ");
     const [item_name, setItem_name]=useState(" ");
-
-
-
 
     useEffect( ()=>{
         getRequestData()
@@ -40,60 +34,51 @@ const Request=()=>{
 //Get BazarList Deposit and MealList Table
 const getRequestData=async ()=>{
         setLoading(true);
-        await axios.get(`http://localhost:5000/request/all-request/${localStorage.getItem("mess_id")}`)
+        await axios.get(`${process.env.NEXT_PUBLIC_HOST}/request/all-request/${localStorage.getItem("mess_id")}`)
             .then((data)=>{
-
-
-                toast.error(data.data)
-                setBazarlist(data.data.data.bazarList)
-                setDsposit(data.data.data.deposit)
-                setMealList(data.data.data.mealList)
-                setLoading(false);
+                if(data.data.status==404){
+                    toast.error(data.data.msg);
+                }else{
+                    toast.success(data.data.msg);
+                    setBazarlist(data.data.data.bazarList)
+                    setDsposit(data.data.data.deposit)
+                    setMealList(data.data.data.mealList)
+                    setLoading(false);
+                }
             })
             .catch((err)=>{
-                toast.error("Something Went worng")
+                toast.error(err.response.data)
             })
 }
 
 
-    //Update bazar-list..........
-
-    const updateBazaList=async (id)=>{
-        await axios.patch(`http://localhost:5000/bazar-list/${id}`, {
-            date,
-            cost,
-            item_name
-        })
-            .then(res=>{
-                toast.error(res.data)
-                setShow(false);
-            })
-            .catch(err=>{
-               toast.error("Somethong Error")
-            })
-    }
 
 
     // delete bazar-list..........
     const deleteBazaList=async (id)=>{
-      await axios.delete(`http://localhost:5000/bazar-list/${id}`)
+      await axios.delete(`${process.env.NEXT_PUBLIC_HOST}/bazar-list/${id}`)
           .then((data)=>{
               if(data.data.deletedCount==1){
                   let filterBazarList=bazarlist.filter(el=>el._id!=id)
                   setBazarlist(filterBazarList);
+                  if(data.data.success){
+                      toast.success(data.data.msg);
+                  }else if(! data.data.success){
+                      toast.error(data.data.msg)
+                  }
               }else{
-                toast.error("Something Went worng")
+                  toast.error(data.data.msg)
               }
           })
           .catch((err)=>{
-              toast.error("Something Went worng")
+              toast.error(err.response.data)
           })
     }
 
 
     //u List
     const acceptMethod=async (id,requestType,data)=>{
-        await axios.post(`http://localhost:5000/request/accept`,{
+        await axios.post(`${process.env.NEXT_PUBLIC_HOST}/request/accept`,{
             id:id,
             type:requestType,
             data:{
@@ -105,42 +90,56 @@ const getRequestData=async ()=>{
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }})
             .then(res=>{
-                toast.error(data.data)
+                if(res.data.success){
+                    toast.error(res.data.msg);
+                }else if(! res.data.msg){
+                    toast.error(res.data.msg)
+                }
             })
             .catch(err=>{
-                toast.error("Something Went Worng")
+                toast.error(err.response.data.msg[0])
             })
     }
     //Delete Deposit List
     const deleteDepositList=async (id)=>{
-        await axios.delete(`http://localhost:5000/deposit/${id}`)
+        await axios.delete(`${process.env.NEXT_PUBLIC_HOST}/deposit/${id}`)
             .then((data)=>{
                 if(data.data.deletedCount==1){
                     let filterDepositList=deposit.filter(el=>el._id!=id)
                     setDsposit(filterDepositList);
+                    if(data.data.success){
+                        toast.success(data.data.msg);
+                    }else if(! data.data.success){
+                        toast.error(data.data.msg)
+                    }
                 }else {
-                    toast.error("Something Went Worng")
+                    toast.error(data.data.msg)
                 }
             })
             .catch((err)=>{
-                toast.error("Something Went Worng")
+                toast.error(err.response.data.msg[0]);
             })
     }
 
     //DeleteMealEntry
     const deleteMealEntry = async (id) => {
-      await axios.delete(`http://localhost:5000/meal-entry/${id}`)
+      await axios.delete(`${process.env.NEXT_PUBLIC_HOST}/meal-entry/${id}`)
           .then((data)=>{
              toast.error(data.data)
               if(data.data.deletedCount==1){
                   let filterMeal = mealList.filter(el=>el._id!=id)
                 setMealList(filterMeal);
-              }else{
-                  toast.error("Something Went Worng");
+                  if(data.data.success){
+                      toast.success(data.data.msg);
+                  }else if(! data.data.success){
+                      toast.error(data.data.msg)
+                  }
+              }else {
+                  toast.error(data.data.msg)
               }
           })
-          .catch((error)=>{
-              toast.error("Something Went Worng");
+          .catch((err)=>{
+              toast.error(err.response.data.msg[0]);
           })
     }
 
@@ -225,10 +224,6 @@ const getRequestData=async ()=>{
 
 
 
-
-
-
-
                 {/*Meal Entry List*/}
                 {!loading ? <div className="table-responsive">
                     <h2> Meal Entry List</h2>
@@ -269,9 +264,6 @@ const getRequestData=async ()=>{
                     </table>
                 </div> : <Skeleton/>
                 }
-
-
-
             </div>
 
         </Layout>
