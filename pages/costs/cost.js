@@ -1,4 +1,4 @@
-import Cost from '../lib/cost'
+import Cost from '../../lib/Cost'
 
 const CostPage = () => {
     return <Cost />

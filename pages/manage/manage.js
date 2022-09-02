@@ -1,4 +1,4 @@
-import Manage from '../lib/Manage'
+import Manage from '../../lib/Manage'
 
 const ManagePage = () => {
     return <Manage />

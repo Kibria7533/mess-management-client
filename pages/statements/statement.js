@@ -1,4 +1,4 @@
-import Statement from '../lib/Statement'
+import Statement from '../../lib/Statement'
 
 
     

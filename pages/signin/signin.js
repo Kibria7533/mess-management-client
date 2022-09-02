@@ -1,4 +1,4 @@
-import Signin from '../lib/Signin'
+import Signin from '../../lib/Signin'
 
 const SigninPage = () => {
     return <Signin />

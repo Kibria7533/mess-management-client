@@ -1,4 +1,4 @@
-import MealReport from '../lib/MealReport'
+import MealReport from '../../lib/MealReport'
 
 const MealReportPage = () => {
     return <MealReport />
