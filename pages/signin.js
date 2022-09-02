@@ -4,4 +4,4 @@ const SigninPage = () => {
     return <Signin />
 }
 
-export default SigninPage
+ export  default Signin

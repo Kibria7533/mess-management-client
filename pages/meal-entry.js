@@ -4,4 +4,5 @@ const MealEntryPage = () => {
     return <MealEntry />
 }
 
+
 export default MealEntryPage
