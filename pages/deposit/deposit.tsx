@@ -1,4 +1,4 @@
-import Deposit from "../lib/deposit";
+import Deposit from '../../lib/Deposit'
 
 const DepositPage = () => {
     return <Deposit />

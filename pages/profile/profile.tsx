@@ -1,4 +1,4 @@
-import Profile from '../lib/Profile'
+import Profile from '../../lib/Profile'
 
 const ProfilePage = () => {
     return <Profile />

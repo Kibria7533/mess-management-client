@@ -1,4 +1,4 @@
-import MonthlyStatement from '../lib/MonthlyStatement'
+import MonthlyStatement from '../../lib/MonthlyStatement'
 
 const MonthlyStatementPage = () => {
     return <MonthlyStatement />

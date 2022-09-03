@@ -1,4 +1,4 @@
-import MemberList from '../lib/MmemberList'
+import MemberList from '../../lib/MmemberList'
 
 
 

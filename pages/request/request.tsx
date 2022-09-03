@@ -1,6 +1,5 @@
-import Request from '../lib/Request'
 
-import Request from '../lib/Request'
+import Request from '../../lib/Request'
 
 const RequestPage = () => {
     return <Request />

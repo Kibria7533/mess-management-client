@@ -12,7 +12,7 @@ const Nav = () => {
             localStorage.removeItem('mess_id');
 
         Router.push({
-            pathname: '/signin',
+            pathname: '/signin/signin',
         });
 
     }
@@ -34,10 +34,10 @@ const Nav = () => {
 
             <ul>
                 <li>
-                    <Link href='/statement'>Home</Link>
+                    <Link href='/statements/statement'>Home</Link>
                 </li>
                 <li>
-                    <Link href='/profile'><button className={navStyles.nav_button}>Profile  <FaFortAwesomeAlt/></button></Link>
+                    <Link href='/profile/profile'><button className={navStyles.nav_button}>Profile  <FaFortAwesomeAlt/></button></Link>
                 </li>
 
                 <li>

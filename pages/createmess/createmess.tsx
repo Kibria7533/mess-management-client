@@ -1,5 +1,5 @@
-import Createmess from "../lib/Createmess"
 
+import CreateMess  from "../../lib/Createmess"
 
 const CreateMessPage = () => {
     return <CreateMess />

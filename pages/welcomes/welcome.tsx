@@ -1,4 +1,4 @@
-import WelCome from '../lib/Welcome'
+import WelCome from '../../lib/Welcome'
 
 const WelComePage = () => {
     return <WelCome />
