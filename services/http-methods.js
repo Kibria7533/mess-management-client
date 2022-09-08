@@ -1,11 +1,11 @@
 import axios from './axiosInstance'
 
-export const apiGet = (url, others) => {
+export const apiGet =async (url, others) => {
     try {
-        return axios.get(url, others)
+    const res=await axios.get(url, others);
+    return res.data;
     } catch (error) {
-        console.log(error);
-        return null;
+        return error;
     }
 }
 
