@@ -5,11 +5,11 @@ import {useEffect} from "react";
 const Layout=({children,token})=>{
     const router = useRouter();
 
-    useEffect(() => {
-        if (!localStorage.getItem('access_token')) {
-            router.push('/');
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (!localStorage.getItem('access_token')) {
+    //         router.push('/');
+    //     }
+    // }, []);
     return(
         <div>
             <Nav/>

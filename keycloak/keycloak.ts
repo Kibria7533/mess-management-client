@@ -1,7 +1,7 @@
 import {COOKIE_KEY_AUTH_ID_TOKEN} from '../shared/constants/AppConst';
 import {getBrowserCookie} from './cookieInstance';
-import {futureNationDomain} from 'common/constants';
-import {getHostUrl} from 'utilities/helpers';
+import {futureNationDomain} from '../common/constants';
+import {getHostUrl} from '../utilities/helpers';
 import {keycloakConfigs} from "./keycloakConfigs";
 
 function createUUID() {
@@ -77,16 +77,20 @@ function Keycloak(this: any, config: any) {
       let baseUrl = keycloakConfig.loginUrl;
       let scope = 'openid';
 
-      const redirectUrl = new URL(
-        getHostUrl() + keycloakConfig.loginCallbackUri,
-      );
+      // const redirectUrl = new URL(
+      //   getHostUrl() + keycloakConfig.loginCallbackUri,
+      // );
+      const redirectUrl=`http://localhost:3000/statements/statement`
+
 
       return (
         baseUrl +
         '?client_id=' +
         encodeURIComponent(keycloakConfig.clientId) +
         '&redirect_uri=' +
-        encodeURIComponent(redirectUrl.toString()) +
+          redirectUrl
+        // encodeURIComponent(redirectUrl.toString()) +
+      +
         '&state=' +
         encodeURIComponent(state) +
         // + '&response_mode=' + encodeURIComponent(kc.responseMode)
@@ -130,6 +134,7 @@ const keycloakInstance = new (Keycloak as any)({});
 keycloakInstance.init();
 
 export const getSSOLoginUrl = () => {
+  console.log('koolk',keycloakInstance.createLoginUrl())
   return keycloakInstance.createLoginUrl();
 };
 export const getSSOLogoutUrl = () => keycloakInstance.createLogoutUrl();

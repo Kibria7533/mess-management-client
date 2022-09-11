@@ -1,16 +1,16 @@
 export const keycloakConfigs: any = {
   local: {
     realm: 'mess',
-    clientId: 'mess',
-    clientSecret: 'aqXl7V7kXDhWjfoKDaQIQwFzmDMsFnnV',
+    clientId: 'mess-client',
+    clientSecret: 'jEhG1SOPCQJJDKtUYLk0mBVAabk8kVh9',
     loginUrl:
-      'http://localhost:8088/auth/realms/future-nation-web/protocol/openid-connect/auth',
+      'http://localhost:8088/auth/realms/mess/protocol/openid-connect/auth',
     logoutUrl:
-      'http://localhost:8088/auth/realms/future-nation-web/protocol/openid-connect/logout',
+      'http://localhost:8088/auth/realms/mess/protocol/openid-connect/logout',
     passwordUpdateUrl:
-      'http://localhost:8088/auth/realms/future-nation-web/protocol/openid-connect/auth',
+      'http://localhost:8088/auth/realms/mess/protocol/openid-connect/auth',
     tokenUrl:
-      'http://localhost:8088/auth/realms/future-nation-web/protocol/openid-connect/token',
+      'http://localhost:8088/auth/realms/mess/protocol/openid-connect/token',
     loginCallbackUri: '/callback',
     logoutCallbackUri: '/logout',
     updatePasswordCallback: '/callback-update-password',

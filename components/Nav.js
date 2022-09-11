@@ -4,6 +4,7 @@ import Router from 'next/router'
 import {FaFortAwesomeAlt} from "react-icons/fa";
 import mealLogo from '../image/meal.logo.png'
 import Image from 'next/image'
+import {getSSOLoginUrl} from "../keycloak/keycloak";
 const Nav = () => {
 
     const logout=()=>{

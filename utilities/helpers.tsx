@@ -1,13 +1,13 @@
 import {startCase as lodashStartCase} from 'lodash';
-import {getBrowserCookie} from '../libs/cookieInstance';
-import {COOKIE_KEY_INSTITUTE_ID} from '../../shared/constants/AppConst';
+import {getBrowserCookie} from '../keycloak/cookieInstance';
+import {COOKIE_KEY_INSTITUTE_ID} from '../shared/constants/AppConst';
 import {PROFILE_SETUP_KEYS} from '../common/constants';
 import URL from 'url';
 import {
   GENDER,
   UserTypeCode,
   UserTypesValue,
-} from '../../shared/constants/AppEnums';
+} from '../shared/constants/AppEnums';
 
 export const catchBlockHandler = (error: any, message = '') => {
   throw error;

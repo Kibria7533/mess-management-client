@@ -1,16 +1,13 @@
-import Layout from "../components/Layout";
 import styleSignup from "../styles/signup.module.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Router from "next/router";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { apiGet } from "../services/http-methods";
-import { apiPost } from "../services/http-methods";
-import React from "react";
+import {apiPost} from "../services/http-methods";
+import {getSSOLoginUrl} from "../keycloak/keycloak";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -189,6 +186,11 @@ const Signup = () => {
           <div className="controls">
             <Link href={"/signin/signin"}>
               <button className={styleSignup.button}>SignIn</button>
+            </Link>
+          </div>
+          <div className="controls">
+            <Link href={`${getSSOLoginUrl()}`}>
+              <button className={styleSignup.button}>Login with keycloak</button>
             </Link>
           </div>
         </div>
