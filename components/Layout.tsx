@@ -2,7 +2,9 @@ import styles from '../styles/Layout.module.css'
 import Nav from "./Nav";
 import {useRouter} from "next/router";
 import {useEffect} from "react";
-const Layout=({children,token})=>{
+
+
+const Layout=({children,token}:any)=>{
     const router = useRouter();
 
     // useEffect(() => {
@@ -10,7 +12,7 @@ const Layout=({children,token})=>{
     //         router.push('/');
     //     }
     // }, []);
-    return(
+    return (
         <div>
             <Nav/>
             <div className={styles.container}>
@@ -19,7 +21,7 @@ const Layout=({children,token})=>{
                 </main>
             </div>
         </div>
-    )
+    );
 }
 
 export default Layout

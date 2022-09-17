@@ -9,6 +9,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "module": "esnext",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -19,9 +20,9 @@
     "**/*.ts",
     "**/*.tsx",
     "lib/Home.tsx",
-    "components/Nav.js",
-    "components/Layout.js",
-    "components/Header.js"
+    "components/Nav.tsx",
+    "components/Layout.ts",
+    "components/Header.tsx"
   ],
   "exclude": ["node_modules"]
 }

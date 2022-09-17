@@ -19,37 +19,37 @@ import { apiPatch } from "../services/http-methods";
 const Management=()=>{
 
     // Modal
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState<any>(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [bazarShow, setBazarShow] = useState(false);
+    const [bazarShow, setBazarShow] = useState<any>(false);
     const bazarHandleClose = () => setBazarShow(false);
     const bazarHandleShow = () => setBazarShow(true);
 
-    const [depositShow, setDepositShow] = useState(false);
+    const [depositShow, setDepositShow] = useState<any>(false);
     const depositHandleClose = () => setBazarShow(false);
     const depositHandleShow = () => setBazarShow(true);
 
-    const [mealShow, setMealShow] = useState(false);
+    const [mealShow, setMealShow] = useState<any>(false);
     const mealHandleClose = () => setBazarShow(false);
     const mealHandleShow = () => setBazarShow(true);
 
 
-    const [loading,setLoading]=useState(false);
+    const [loading,setLoading]=useState<any>(false);
 
     //Bazar list UseState
-    const [date,setDate]=useState(" ")
-    const [cost, setCost]=useState(" ");
-    const [item_name, setItem_name]=useState(" ");
-    const [bazarid,setbazarId]=useState(" ")
+    const [date,setDate]=useState<any>(" ")
+    const [cost, setCost]=useState<any>(" ");
+    const [item_name, setItem_name]=useState<any>(" ");
+    const [bazarid,setbazarId]=useState<any>(" ")
 
 
     //Deposit List UseState
 
-    const [name, setName]=useState("");
-    const [amount, setAmount]=useState(0);
-    const [depositId, setDepositId]=useState("")
+    const [name, setName]=useState<any>("");
+    const [amount, setAmount]=useState<any>(0);
+    const [depositId, setDepositId]=useState<any>("")
 
 
     //Update bazar-list..........
@@ -138,11 +138,11 @@ const Management=()=>{
 
 
     //update MealEntry useState
-    const [meal_of, setMeal_of]=useState("");
-    const [break_fast,setBreakFast]=useState(0);
-    const [lunch,setLunch]=useState(0);
-    const [dinner,setDinner]=useState(0);
-    const [mealEntryId, setMealEntryId]=useState("")
+    const [meal_of, setMeal_of]=useState<any>("");
+    const [break_fast,setBreakFast]=useState<any>(0);
+    const [lunch,setLunch]=useState<any>(0);
+    const [dinner,setDinner]=useState<any>(0);
+    const [mealEntryId, setMealEntryId]=useState<any>("")
 
     const setMealEntryUpdate=(meal)=>{
         setMealEntryId(meal._id);
@@ -578,7 +578,7 @@ const getMealEntry=async ()=>{
                                         placeholder="Enter your dinner"
                                         autoFocus
                                         value={dinner}
-                                        onChange={(e)=>{
+                                        onChange={(e:any)=>{
                                             setDinner(e.target.value)
                                         }}
                                     />
