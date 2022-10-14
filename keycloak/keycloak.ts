@@ -51,9 +51,10 @@ function Keycloak(this: any, config: any) {
     }
 
     kc.createLogoutUrl = function (options: any) {
-      let redirectUrl = new URL(
-        futureNationDomain() + keycloakConfig.logoutCallbackUri,
-      );
+      let redirectUrl='http://localhost:3000/'
+      // let redirectUrl = new URL(
+      //   futureNationDomain() + keycloakConfig.logoutCallbackUri,
+      // );
 
       let url =
         keycloakConfig.logoutUrl +
@@ -64,8 +65,9 @@ function Keycloak(this: any, config: any) {
 
       if (getBrowserCookie(COOKIE_KEY_AUTH_ID_TOKEN)) {
         url +=
-          '&id_token_hint=' +
-          encodeURIComponent(getBrowserCookie(COOKIE_KEY_AUTH_ID_TOKEN));
+        '&id_token_hint=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICItSVdSaTdEaXB5T1FYaWhQbVphOWVDN1NBbHZab2dtOVU0TEMxVkxmVDRJIn0.eyJleHAiOjE2NjUyODg5ODksImlhdCI6MTY2NTI4ODY4OSwiYXV0aF90aW1lIjowLCJqdGkiOiJlOWJmZThiYi04ZWE2LTQ4ZTYtOGI1ZS1lZDNjM2NiZDkxYzkiLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwODAvYXV0aC9yZWFsbXMvbXltZXNzIiwiYXVkIjoiYWRtaW4tY2xpIiwic3ViIjoiMzE4YTFhMjgtYTBiZS00ZTczLWEyNWYtNWYzNGViNGVkOTc1IiwidHlwIjoiSUQiLCJhenAiOiJhZG1pbi1jbGkiLCJzZXNzaW9uX3N0YXRlIjoiMDRiZjg1ODMtN2M5Mi00ZDM0LTk2MzctNmM0OWMxNzI1Mzk3IiwiYXRfaGFzaCI6ImI0bGJGWUk2UFBLSk1XNGpzMUY3ZXciLCJhY3IiOiIxIiwic2lkIjoiMDRiZjg1ODMtN2M5Mi00ZDM0LTk2MzctNmM0OWMxNzI1Mzk3IiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5hbWUiOiJHb2xhbSBLaWJyaWEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJraWJyaWEiLCJnaXZlbl9uYW1lIjoiR29sYW0iLCJmYW1pbHlfbmFtZSI6IktpYnJpYSIsImVtYWlsIjoiZ2tpYnJpYWl1QGdtYWlsLmNvbSJ9.pbgsILbyDdu1Ey4C9ZaHKdWVBWPvjN2F4obd4S-IlLEh_A9apJKn7KkYVTO2BSC4ufxxlofRp9VvgoeIK39ASDKBNK27NB6CimNKQTYto0XoWA9K8IFl3RXg6isk9qKvUlFWQmz-NSNDL0q0spKnPeIQo7e_wHVcmAS6WkEfu6jIm2JsJb6SgDngxbjQxPNdgpgdAr_CMIqRWXvgkUmeEhiyQAhpwQPFc4ciwKWXn1Oq4Z1l19wCaflxablarrqkmhJ9gHhgjW6FgkRBKuK21Aeu3c8BzJXRcGs1HQ_1eTI7tkY03AlLqao4BBhzV47cmmNdvRTZdXlN7SAQpDINOA'
+          // '&id_token_hint=' +
+          // encodeURIComponent(getBrowserCookie(COOKIE_KEY_AUTH_ID_TOKEN));
       }
 
       return url;
@@ -80,7 +82,7 @@ function Keycloak(this: any, config: any) {
       // const redirectUrl = new URL(
       //   getHostUrl() + keycloakConfig.loginCallbackUri,
       // );
-      const redirectUrl=`http://localhost:3000/statements/statement`
+      const redirectUrl=`http://localhost:3000/welcomes/welcome`
 
 
       return (
